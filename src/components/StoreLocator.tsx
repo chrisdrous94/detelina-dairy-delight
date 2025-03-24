@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { MapPin, Phone, Mail, Building } from 'lucide-react';
+import { MapPin, Phone, Mail, Building, ChevronRight } from 'lucide-react';
 
 interface StoreLocation {
   id: number;
