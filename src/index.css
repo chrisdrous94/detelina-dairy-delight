@@ -149,3 +149,13 @@
   background: linear-gradient(to right, #f6f7f8 8%, #edeef1 18%, #f6f7f8 33%);
   background-size: 800px 104px;
 }
+@keyframes zoom-in {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
