@@ -101,7 +101,7 @@ const Timeline = () => {
       year: '1995',
       title: 'Founding of Detelina Dairy',
       description: 'Detelina Dairy was established in Cyprus by Eastern European dairy experts with a vision to bring authentic fermented dairy products to the local market.',
-      image: 'chrisdrous94/detelina-dairy-delight/public/lovable-uploads/grandma old factory.jpg',
+      image: 'lovable-uploads/grandma old factory.jpg',
       side: 'left'
     },
     {
