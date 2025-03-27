@@ -6,7 +6,7 @@ const WelcomeScreen = ({ onFinish }: { onFinish: () => void }) => {
       <img
         src="/lovable-uploads/DETELINA LOGO 2025 white-02.png"
         alt="Detelina Logo"
-        className="w-40 h-auto animate-zoom-in mb-6"
+        className="w-[320px] md:w-[400px] lg:w-[480px] animate-zoom-in mb-12"
       />
       <button
         onClick={onFinish}
