@@ -39,7 +39,7 @@ const Navbar = () => {
           <img
            src="/lovable-uploads/DETELINA LOGO 2025 white-02.png"
           alt="Detelina Logo"
-          className="h-10 w-auto"
+          className="h-20 w-auto"
           />
          </Link>
 
