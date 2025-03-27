@@ -36,11 +36,12 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <span className="text-detelina-green font-playfair font-bold text-2xl">
-              DETELINA
-            </span>
-            <span className="ml-1 text-detelina-blue font-playfair italic">Dairy</span>
-          </Link>
+          <img
+           src="/images/logo.png"
+          alt="Detelina Logo"
+          className="h-10 w-auto"
+          />
+         </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
