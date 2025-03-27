@@ -24,10 +24,10 @@ const Products = () => {
               Our Products
             </span>
             <h1 className="text-4xl md:text-5xl font-bold mb-6 font-playfair">
-              Eastern European Dairy Traditions
+              Naturally good.Proudly Cypriot.
             </h1>
             <p className="text-lg text-gray-700 mb-8">
-              Discover our range of authentic, naturally fermented dairy products made using traditional Eastern European recipes and modern production standards.
+            Naturally fermented, handcrafted with local milk, and rooted in family tradition for generations
             </p>
 
             {/* Search box (disabled) */}
