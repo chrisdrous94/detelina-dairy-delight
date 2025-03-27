@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 // Images with preloading
 const heroImages = [
-  '/lovable-uploads/6f6222f5-7512-4eff-ba92-a82f28b5d78b.png',
-  '/lovable-uploads/2a26b134-2724-4bd1-8093-788f23e215b0.png',
-  '/lovable-uploads/5de99ef6-bb87-44a5-8018-8a78cd7eaf0b.png',
+  '/lovable-uploads/kefir full fat.jpg',
+  '/lovable-uploads/kefir full light and strawberry together.jpg',
+  '/lovable-uploads/old detelina products.png',
 ];
 
 const Hero = () => {
