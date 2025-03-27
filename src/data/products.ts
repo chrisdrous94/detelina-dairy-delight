@@ -13,7 +13,7 @@ export const allProducts: ProductProps[] = [
       'High in protein and calcium',
       'Naturally low in lactose'
     ],
-    image: '/lovable-uploads/kefir full fat.jpg',
+    image: '/lovable-uploads/kefir-full-fat.jpg',
     category: 'Fermented Drink',
     nutritionFacts: {
       servingSize: "500ml",
@@ -41,7 +41,7 @@ export const allProducts: ProductProps[] = [
       'Light, refreshing taste',
       'Ideal for daily consumption'
     ],
-    image: '/lovable-uploads/kefir light.jpg',
+    image: '/lovable-uploads/kefir-light.jpg',
     category: 'Fermented Drink',
     nutritionFacts: {
       servingSize: "240ml",
@@ -69,7 +69,7 @@ export const allProducts: ProductProps[] = [
       'Muscle maintenance',
       'Great taste and nutrition'
     ],
-    image: '/lovable-uploads/pro² protein kefir black font.jpg',
+    image: '/lovable-uploads/pro²-white.png',
     category: 'Fitness Drink',
     nutritionFacts: {
       servingSize: "240ml",
@@ -116,7 +116,7 @@ export const allProducts: ProductProps[] = [
   },
   {
     id: 'tvorog-9',
-    name: 'Tvorog 9%',
+    name: 'Tvorog 9% 450g',
     russianName: 'Творог 9%',
     description: 'A fresh cottage cheese with 9% fat content and a slightly tangy flavor, perfect for breakfast dishes or as a base for desserts.',
     benefits: [
@@ -125,7 +125,7 @@ export const allProducts: ProductProps[] = [
       'Versatile culinary use',
       'Contains essential amino acids'
     ],
-    image: '/lovable-uploads/tvorog 450g.png',
+    image: '/lovable-uploads/tvorog-450g.png',
     category: 'Fresh Cheese',
     nutritionFacts: {
       servingSize: "100g",
@@ -144,7 +144,7 @@ export const allProducts: ProductProps[] = [
   },
   {
     id: 'tvorog-5',
-    name: 'Tvorog 5%',
+    name: 'Tvorog 9% 250g',
     russianName: 'Творог 5%',
     description: 'A lighter version of our fresh cottage cheese with 5% fat content, ideal for those seeking a lower-fat option.',
     benefits: [
@@ -153,7 +153,7 @@ export const allProducts: ProductProps[] = [
       'Perfect for diets',
       'Versatile in recipes'
     ],
-    image: '/lovable-uploads/tvorog 250g.png',
+    image: '/lovable-uploads/tvorog-250g.png',
     category: 'Fresh Cheese',
     nutritionFacts: {
       servingSize: "100g",
@@ -181,7 +181,7 @@ export const allProducts: ProductProps[] = [
       'Contains beneficial probiotics',
       'Natural sleep aid'
     ],
-    image: '/lovable-uploads/kefir full fat.jpg',
+    image: '/lovable-uploads/riazhenka.jpg',
     category: 'Baked Milk',
     nutritionFacts: {
       servingSize: "240ml",
@@ -209,7 +209,7 @@ export const allProducts: ProductProps[] = [
       'No artificial additives',
       'Kid-friendly option'
     ],
-    image: '/lovable-uploads/kefir full light and strawberry together.jpg',
+    image: '/lovable-uploads/strawberry.jpg',
     category: 'Fruit Drink',
     nutritionFacts: {
       servingSize: "240ml",
