@@ -135,7 +135,7 @@ const Timeline = () => {
       year: '2025',
       title: 'Introduction of Pro² Protein Line',
       description: 'Developed and launched our innovative Pro² protein kefir line, targeting fitness enthusiasts and health-conscious consumers.',
-      image: '/lovable-uploads/985b2576-dab1-4283-8c2e-923d2a1b6e3a.png',
+      image: 'public/lovable-uploads/pro² protein kefir black font.jpg',
       side: 'right'
     }
   ];
