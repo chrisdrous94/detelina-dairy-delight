@@ -94,10 +94,28 @@
 
   body {
     @apply bg-detelina-cream text-detelina-dark font-inter;
+    text-rendering: optimizeSpeed;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-playfair;
+  }
+  
+  /* Improve image rendering */
+  img, svg, video, canvas, audio, iframe, embed, object {
+    display: block;
+    vertical-align: middle;
+    will-change: auto !important; /* Optimize performance */
+  }
+  
+  /* For better performance */
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
@@ -105,9 +123,10 @@
   text-wrap: balance;
 }
 
-/* Custom styling */
+/* Custom styling - optimized for performance */
 .product-card {
-  @apply relative overflow-hidden bg-white rounded-2xl shadow-md transition-all duration-500 hover:shadow-xl;
+  @apply relative overflow-hidden bg-white rounded-2xl shadow-md transition-all duration-300 hover:shadow-xl;
+  contain: content; /* Improves browser performance */
 }
 
 .product-card:hover .product-image {
@@ -115,7 +134,11 @@
 }
 
 .product-image {
-  @apply transition-all duration-700 ease-in-out;
+  @apply transition-all duration-500 ease-in-out;
+  /* Performance Enhancement */
+  image-rendering: auto;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .nav-link {
@@ -126,7 +149,7 @@
   @apply bg-white/60 backdrop-blur-md rounded-2xl border border-white/20;
 }
 
-/* Animations */
+/* Animations - optimized */
 .animate-enter {
   @apply animate-fade-in;
 }
@@ -135,6 +158,7 @@
   @apply animate-blur-in;
 }
 
+/* Optimized shimmer animation */
 @keyframes shimmer {
   0% {
     background-position: -468px 0;
@@ -148,4 +172,25 @@
   animation: shimmer 1.5s infinite linear;
   background: linear-gradient(to right, #f6f7f8 8%, #edeef1 18%, #f6f7f8 33%);
   background-size: 800px 104px;
+  will-change: background-position;
+  contain: paint;
+}
+
+/* New optimization class for content that needs to be hardware accelerated */
+.hardware-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+/* Reduce animation work for mobile devices */
+@media (max-width: 768px) {
+  .shimmer {
+    animation-duration: 2s;
+  }
+  
+  .product-image {
+    @apply transition-all duration-300;
+  }
 }
