@@ -41,7 +41,7 @@ export const allProducts: ProductProps[] = [
       'Cost-effective option',
       'Perfect for shared meals'
     ],
-    image: '/lovable-uploads/kefir-family-pack.jpg', // Replace with your image
+    image: '/lovable-uploads/kefir-full-fat.jpg', // Replace with your image
     category: 'Fermented Drink',
     nutritionFacts: {
       servingSize: "500ml",
