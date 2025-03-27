@@ -57,7 +57,7 @@ const Contact = () => {
                   <MapPin className="w-6 h-6 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold mb-1">Visit Us</h3>
-                    <p className="opacity-90">15 Agias Zonis, Limassol, Cyprus</p>
+                    <p className="opacity-90">Akademias 2,Ypsonas,Limassol, Cyprus</p>
                   </div>
                 </div>
                 
@@ -65,7 +65,7 @@ const Contact = () => {
                   <Phone className="w-6 h-6 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold mb-1">Call Us</h3>
-                    <p className="opacity-90">+357 25 123 456</p>
+                    <p className="opacity-90">+357 25 715450</p>
                   </div>
                 </div>
                 
