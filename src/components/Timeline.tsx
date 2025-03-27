@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useAnimation } from 'framer-motion';
 
@@ -11,7 +12,7 @@ interface TimelineEventProps {
 
 const TimelineEvent = ({ year, title, description, image, side }: TimelineEventProps) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 }); // Reduced threshold for earlier loading
+  const isInView = useInView(ref, { once: true, amount: 0.2 }); // Changed to once: true for performance
   const controls = useAnimation();
   const [imageLoaded, setImageLoaded] = useState(!image);
 
@@ -24,13 +25,13 @@ const TimelineEvent = ({ year, title, description, image, side }: TimelineEventP
   const contentVariants = {
     hidden: { 
       opacity: 0, 
-      x: side === 'left' ? -20 : 20 // Further reduced movement for better performance
+      x: side === 'left' ? -30 : 30 // Reduced movement for better performance
     },
     visible: { 
       opacity: 1, 
       x: 0,
       transition: { 
-        duration: 0.5, // Even faster animation
+        duration: 0.6, // Slightly faster animation
         ease: [0.16, 1, 0.3, 1] 
       }
     }
@@ -44,7 +45,7 @@ const TimelineEvent = ({ year, title, description, image, side }: TimelineEventP
           className="text-3xl font-bold text-primary flex items-center justify-center"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.4 }}
         >
           {year}
         </motion.div>
@@ -57,7 +58,7 @@ const TimelineEvent = ({ year, title, description, image, side }: TimelineEventP
             className="absolute w-3 h-3 rounded-full bg-primary top-0 left-1/2 transform -translate-x-1/2"
             initial={{ scale: 0 }}
             animate={isInView ? { scale: 1 } : { scale: 0 }}
-            transition={{ delay: 0.05, duration: 0.2 }}
+            transition={{ delay: 0.1, duration: 0.3 }}
           />
         </div>
       </div>
@@ -74,7 +75,7 @@ const TimelineEvent = ({ year, title, description, image, side }: TimelineEventP
         {image && (
           <div className="overflow-hidden rounded-lg bg-gray-100">
             {!imageLoaded && (
-              <div className="aspect-video bg-gray-100 shimmer" style={{ height: '225px' }} />
+              <div className="aspect-video bg-gray-100 shimmer" />
             )}
             <img 
               src={image} 
@@ -95,9 +96,32 @@ const TimelineEvent = ({ year, title, description, image, side }: TimelineEventP
 
 const Timeline = () => {
   const timelineRef = useRef(null);
-  const isInView = useInView(timelineRef, { once: true, amount: 0.05 }); // Lower threshold to start animations earlier
-  
-  // Images will now be lazy-loaded by the browser in each TimelineEvent component
+  const isInView = useInView(timelineRef, { once: true, amount: 0.1 }); // Changed to once: true
+  const [imagesPreloaded, setImagesPreloaded] = useState(false);
+
+  // Preload images for better performance
+  useEffect(() => {
+    const imageUrls = events
+      .filter(event => event.image)
+      .map(event => event.image as string);
+    
+    if (imageUrls.length > 0) {
+      const imagePromises = imageUrls.map(url => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.src = url;
+          img.onload = () => resolve(true);
+          img.onerror = () => resolve(false);
+        });
+      });
+      
+      Promise.all(imagePromises).then(() => {
+        setImagesPreloaded(true);
+      });
+    } else {
+      setImagesPreloaded(true);
+    }
+  }, []);
 
   const events: TimelineEventProps[] = [
     {
@@ -168,16 +192,18 @@ const Timeline = () => {
               className="absolute top-0 bottom-0 left-0 right-0 bg-primary"
               initial={{ scaleY: 0, originY: 0 }}
               animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
             />
           </div>
           
-          {/* Events are now rendered immediately and each handles its own image loading */}
-          <div className="space-y-12">
-            {events.map((event, index) => (
-              <TimelineEvent key={index} {...event} />
-            ))}
-          </div>
+          {/* Only render events if images are preloaded or if there's no image to preload */}
+          {imagesPreloaded && (
+            <div className="space-y-12">
+              {events.map((event, index) => (
+                <TimelineEvent key={index} {...event} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
