@@ -85,11 +85,7 @@ const Products = () => {
                 <span className="text-primary text-xl font-bold">01</span>
               </div>
               <h3 className="text-xl font-bold mb-3 font-playfair">
-                Natural Ingredients
-              </h3>
-              <p className="text-gray-600">
-                We use only fresh, locally sourced milk and natural fermentation cultures without any artificial additives or preservatives.
-              </p>
+                Natural Ingredients</h3>
             </div>
 
             <div className="bg-white rounded-xl p-8 shadow-sm">
@@ -105,11 +101,7 @@ const Products = () => {
                 <span className="text-primary text-xl font-bold">03</span>
               </div>
               <h3 className="text-xl font-bold mb-3 font-playfair">
-                Small Batch Production
-              </h3>
-              <p className="text-gray-600">
-                We produce in small batches to ensure optimal fermentation, quality control, and freshness of all our dairy products.
-              </p>
+                Small Batch Production</h3>
             </div>
           </div>
         </div>
