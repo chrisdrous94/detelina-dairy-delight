@@ -12,6 +12,20 @@ export interface ProductProps {
   benefits: string[];
   image: string;
   category: string;
+  nutritionFacts?: {
+    servingSize: string;
+    calories: number;
+    totalFat: string;
+    saturatedFat: string;
+    cholesterol: string;
+    sodium: string;
+    totalCarbs: string;
+    dietaryFiber: string;
+    sugars: string;
+    protein: string;
+    calcium: string;
+    vitaminD: string;
+  };
 }
 
 const ProductCard = ({ product }: { product: ProductProps }) => {
@@ -56,7 +70,9 @@ const ProductCard = ({ product }: { product: ProductProps }) => {
           </span>
         </div>
         <h3 className="text-xl font-bold mb-1 font-playfair">
-          {product.name}
+          <Link to={`/products/${product.id}`} className="hover:text-primary transition-colors">
+            {product.name}
+          </Link>
         </h3>
         {product.russianName && (
           <h4 className="text-sm text-gray-500 mb-3 italic">

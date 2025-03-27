@@ -9,67 +9,8 @@ import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import ProductCard, { ProductProps } from '../components/ProductCard';
-
-// Product data
-const featuredProducts: ProductProps[] = [
-  {
-    id: 'kefir',
-    name: 'Kefir',
-    russianName: 'Кефир',
-    description: 'A fermented milk drink with a unique tangy flavor, rich in probiotics and essential nutrients.',
-    benefits: [
-      'Rich in beneficial probiotics',
-      'Supports digestive health',
-      'High in protein and calcium',
-      'Naturally low in lactose'
-    ],
-    image: '/lovable-uploads/2a26b134-2724-4bd1-8093-788f23e215b0.png',
-    category: 'Fermented Drink'
-  },
-  {
-    id: 'smetana',
-    name: 'Smetana',
-    russianName: 'Сметана',
-    description: 'A thick, rich sour cream with a creamy texture that adds depth to both savory and sweet dishes.',
-    benefits: [
-      'Creates rich, creamy texture in dishes',
-      'Versatile culinary ingredient',
-      'Contains beneficial bacteria',
-      'Source of essential vitamins'
-    ],
-    image: '/lovable-uploads/5de99ef6-bb87-44a5-8018-8a78cd7eaf0b.png',
-    category: 'Sour Cream'
-  },
-  {
-    id: 'tvorog',
-    name: 'Tvorog',
-    russianName: 'Творог',
-    description: 'A fresh cottage cheese with a slightly tangy flavor, perfect for breakfast dishes or as a base for desserts.',
-    benefits: [
-      'High in protein and calcium',
-      'Low in fat',
-      'Versatile ingredient',
-      'Contains essential amino acids'
-    ],
-    image: '/lovable-uploads/de5ba587-3def-4d3e-bde0-015732774c70.png',
-    category: 'Fresh Cheese'
-  },
-  {
-    id: 'ryazhenka',
-    name: 'Ryazhenka',
-    russianName: 'Ряженка',
-    description: 'A baked fermented milk product with a natural caramelized flavor and a velvety texture.',
-    benefits: [
-      'Gentle on the digestive system',
-      'Rich, nutty caramel flavor',
-      'Contains beneficial probiotics',
-      'Natural sleep aid'
-    ],
-    image: '/lovable-uploads/6f6222f5-7512-4eff-ba92-a82f28b5d78b.png',
-    category: 'Baked Milk'
-  }
-];
+import ProductCard from '../components/ProductCard';
+import { featuredProducts } from '../data/products';
 
 const Index = () => {
   // Scroll to top on page load
@@ -85,7 +26,7 @@ const Index = () => {
       <Hero />
       
       {/* Featured Products */}
-      <section className="py-20">
+      <section className="py-20" id="products">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <span className="inline-block px-3 py-1 mb-4 bg-primary/10 text-primary text-sm font-medium rounded-full">
