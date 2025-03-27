@@ -79,25 +79,25 @@ const Products = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-  <div className="bg-white rounded-xl p-8 shadow-sm flex flex-col items-center">
-    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-      <span className="text-primary text-xl font-bold">01</span>
-    </div>
-    <h3 className="text-xl font-bold font-playfair">Natural Ingredients</h3>
-  </div>
-</div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white rounded-xl p-8 shadow-sm">
+              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+                <span className="text-primary text-xl font-bold">01</span>
+              </div>
+              <h3 className="text-xl font-bold mb-3 font-playfair">
+                Natural Ingredients
+              </h3>
+              <p className="text-gray-600">
+                We use only fresh, locally sourced milk and natural fermentation cultures without any artificial additives or preservatives.
+              </p>
+            </div>
 
             <div className="bg-white rounded-xl p-8 shadow-sm">
               <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-6">
                 <span className="text-primary text-xl font-bold">02</span>
               </div>
               <h3 className="text-xl font-bold mb-3 font-playfair">
-                Traditional Methods
-              </h3>
-              <p className="text-gray-600">
-                Our production follows time-tested Eastern European recipes and fermentation techniques that preserve the authentic taste and health benefits.
-              </p>
+                Traditional Method</h3>
             </div>
 
             <div className="bg-white rounded-xl p-8 shadow-sm">
