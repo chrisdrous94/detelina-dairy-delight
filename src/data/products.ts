@@ -1,6 +1,3 @@
-
-import { ProductProps } from "../components/ProductCard";
-
 export const allProducts: ProductProps[] = [
   {
     id: 'kefir',
@@ -14,6 +11,34 @@ export const allProducts: ProductProps[] = [
       'Naturally low in lactose'
     ],
     image: '/lovable-uploads/kefir-full-fat.jpg',
+    category: 'Fermented Drink',
+    nutritionFacts: {
+      servingSize: "500ml",
+      calories: 120,
+      totalFat: "3g",
+      saturatedFat: "2g",
+      cholesterol: "15mg",
+      sodium: "125mg",
+      totalCarbs: "12g",
+      dietaryFiber: "0g",
+      sugars: "12g",
+      protein: "8g",
+      calcium: "30%",
+      vitaminD: "25%"
+    }
+  },
+  {
+    id: 'kefir-family-pack',
+    name: 'Kefir Family Pack',
+    russianName: 'Кефир Семейный',
+    description: 'A bulk 2L family-size bottle of our original kefir — perfect for households that enjoy probiotic-rich drinks daily.',
+    benefits: [
+      '2L size ideal for families',
+      'Same probiotic-rich formula',
+      'Cost-effective option',
+      'Perfect for shared meals'
+    ],
+    image: '/lovable-uploads/kefir-family-pack.jpg', // Replace with your image
     category: 'Fermented Drink',
     nutritionFacts: {
       servingSize: "500ml",
@@ -59,59 +84,59 @@ export const allProducts: ProductProps[] = [
     }
   },
   {
-    id: 'protein-kefir',
-    name: 'Pro² Protein Kefir',
-    russianName: 'Протеиновый Кефир',
-    description: 'A protein-enriched kefir drink with delicious flavors, perfect for fitness enthusiasts and active lifestyles.',
+    id: 'kefir-strawberry',
+    name: 'Kefir Strawberry',
+    russianName: 'Клубничный Кефир',
+    description: 'A delicious fruity variation of our classic kefir, infused with natural strawberry flavor.',
     benefits: [
-      'High protein content (28g)',
-      'Post-workout recovery',
-      'Muscle maintenance',
-      'Great taste and nutrition'
+      'Natural strawberry flavor',
+      'Same probiotic benefits',
+      'No artificial additives',
+      'Kid-friendly option'
     ],
-    image: '/lovable-uploads/pro²-white.png',
-    category: 'Fitness Drink',
+    image: '/lovable-uploads/strawberry.jpg',
+    category: 'Fruit Drink',
     nutritionFacts: {
       servingSize: "240ml",
-      calories: 180,
+      calories: 140,
       totalFat: "3g",
       saturatedFat: "2g",
       cholesterol: "15mg",
-      sodium: "140mg",
-      totalCarbs: "13g",
+      sodium: "125mg",
+      totalCarbs: "23g",
       dietaryFiber: "0g",
-      sugars: "12g",
-      protein: "28g",
-      calcium: "35%",
+      sugars: "22g",
+      protein: "8g",
+      calcium: "30%",
       vitaminD: "25%"
     }
   },
   {
-    id: 'smetana',
-    name: 'Smetana',
-    russianName: 'Сметана',
-    description: 'A thick, rich sour cream with a creamy texture that adds depth to both savory and sweet dishes.',
+    id: 'ryazhenka',
+    name: 'Ryazhenka',
+    russianName: 'Ряженка',
+    description: 'A baked fermented milk product with a natural caramelized flavor and a velvety texture.',
     benefits: [
-      'Creates rich, creamy texture in dishes',
-      'Versatile culinary ingredient',
-      'Contains beneficial bacteria',
-      'Source of essential vitamins'
+      'Gentle on the digestive system',
+      'Rich, nutty caramel flavor',
+      'Contains beneficial probiotics',
+      'Natural sleep aid'
     ],
-    image: '/lovable-uploads/smetana.png',
-    category: 'Sour Cream',
+    image: '/lovable-uploads/riazhenka.jpg',
+    category: 'Baked Milk',
     nutritionFacts: {
-      servingSize: "30g",
-      calories: 60,
-      totalFat: "6g",
-      saturatedFat: "4g",
-      cholesterol: "20mg",
-      sodium: "10mg",
-      totalCarbs: "1g",
+      servingSize: "240ml",
+      calories: 150,
+      totalFat: "5g",
+      saturatedFat: "3g",
+      cholesterol: "15mg",
+      sodium: "120mg",
+      totalCarbs: "15g",
       dietaryFiber: "0g",
-      sugars: "1g",
-      protein: "1g",
-      calcium: "4%",
-      vitaminD: "2%"
+      sugars: "15g",
+      protein: "9g",
+      calcium: "30%",
+      vitaminD: "25%"
     }
   },
   {
@@ -171,61 +196,31 @@ export const allProducts: ProductProps[] = [
     }
   },
   {
-    id: 'ryazhenka',
-    name: 'Ryazhenka',
-    russianName: 'Ряженка',
-    description: 'A baked fermented milk product with a natural caramelized flavor and a velvety texture.',
+    id: 'smetana',
+    name: 'Smetana',
+    russianName: 'Сметана',
+    description: 'A thick, rich sour cream with a creamy texture that adds depth to both savory and sweet dishes.',
     benefits: [
-      'Gentle on the digestive system',
-      'Rich, nutty caramel flavor',
-      'Contains beneficial probiotics',
-      'Natural sleep aid'
+      'Creates rich, creamy texture in dishes',
+      'Versatile culinary ingredient',
+      'Contains beneficial bacteria',
+      'Source of essential vitamins'
     ],
-    image: '/lovable-uploads/riazhenka.jpg',
-    category: 'Baked Milk',
+    image: '/lovable-uploads/smetana.png',
+    category: 'Sour Cream',
     nutritionFacts: {
-      servingSize: "240ml",
-      calories: 150,
-      totalFat: "5g",
-      saturatedFat: "3g",
-      cholesterol: "15mg",
-      sodium: "120mg",
-      totalCarbs: "15g",
+      servingSize: "30g",
+      calories: 60,
+      totalFat: "6g",
+      saturatedFat: "4g",
+      cholesterol: "20mg",
+      sodium: "10mg",
+      totalCarbs: "1g",
       dietaryFiber: "0g",
-      sugars: "15g",
-      protein: "9g",
-      calcium: "30%",
-      vitaminD: "25%"
-    }
-  },
-  {
-    id: 'kefir-strawberry',
-    name: 'Kefir Strawberry',
-    russianName: 'Клубничный Кефир',
-    description: 'A delicious fruity variation of our classic kefir, infused with natural strawberry flavor.',
-    benefits: [
-      'Natural strawberry flavor',
-      'Same probiotic benefits',
-      'No artificial additives',
-      'Kid-friendly option'
-    ],
-    image: '/lovable-uploads/strawberry.jpg',
-    category: 'Fruit Drink',
-    nutritionFacts: {
-      servingSize: "240ml",
-      calories: 140,
-      totalFat: "3g",
-      saturatedFat: "2g",
-      cholesterol: "15mg",
-      sodium: "125mg",
-      totalCarbs: "23g",
-      dietaryFiber: "0g",
-      sugars: "22g",
-      protein: "8g",
-      calcium: "30%",
-      vitaminD: "25%"
+      sugars: "1g",
+      protein: "1g",
+      calcium: "4%",
+      vitaminD: "2%"
     }
   }
 ];
-
-export const featuredProducts = allProducts.slice(0, 4);
