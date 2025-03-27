@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 
@@ -33,19 +32,21 @@ const ProductCard = ({ product }: { product: ProductProps }) => {
 
   return (
     <div className="product-card group h-full">
-      <div className="aspect-square overflow-hidden relative">
+      <div className="aspect-square overflow-hidden relative bg-gray-100">
         {/* Image loading state */}
         {!isLoaded && (
           <div className="absolute inset-0 bg-gray-100 shimmer" />
         )}
         
-        {/* Product image */}
+        {/* Product image with loading optimization */}
         <img
           src={product.image}
           alt={product.name}
-          className={`product-image w-full h-full object-cover transition-opacity duration-500 ${
+          className={`product-image w-full h-full object-cover transition-opacity duration-300 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
+          loading="lazy"
+          decoding="async"
           onLoad={() => setIsLoaded(true)}
         />
         

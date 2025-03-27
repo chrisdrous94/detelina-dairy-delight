@@ -41,7 +41,7 @@ export const allProducts: ProductProps[] = [
       'Light, refreshing taste',
       'Ideal for daily consumption'
     ],
-    image: 'public/lovable-uploads/kefir light.jpg',
+    image: '/lovable-uploads/kefir light.jpg',
     category: 'Fermented Drink',
     nutritionFacts: {
       servingSize: "240ml",
@@ -69,7 +69,7 @@ export const allProducts: ProductProps[] = [
       'Muscle maintenance',
       'Great taste and nutrition'
     ],
-    image: 'public/lovable-uploads/pro² protein kefir black font.jpg',
+    image: '/lovable-uploads/pro² protein kefir black font.jpg',
     category: 'Fitness Drink',
     nutritionFacts: {
       servingSize: "240ml",
@@ -97,7 +97,7 @@ export const allProducts: ProductProps[] = [
       'Contains beneficial bacteria',
       'Source of essential vitamins'
     ],
-    image: 'public/lovable-uploads/smetana.png',
+    image: '/lovable-uploads/smetana.png',
     category: 'Sour Cream',
     nutritionFacts: {
       servingSize: "30g",
@@ -125,7 +125,7 @@ export const allProducts: ProductProps[] = [
       'Versatile culinary use',
       'Contains essential amino acids'
     ],
-    image: 'public/lovable-uploads/tvorog 450g.png',
+    image: '/lovable-uploads/tvorog 450g.png',
     category: 'Fresh Cheese',
     nutritionFacts: {
       servingSize: "100g",
@@ -153,7 +153,7 @@ export const allProducts: ProductProps[] = [
       'Perfect for diets',
       'Versatile in recipes'
     ],
-    image: '/lovable-uploads/4a27570c-fddc-4580-b730-1d14816a8f8a.png',
+    image: '/lovable-uploads/tvorog 250g.png',
     category: 'Fresh Cheese',
     nutritionFacts: {
       servingSize: "100g",
@@ -181,7 +181,7 @@ export const allProducts: ProductProps[] = [
       'Contains beneficial probiotics',
       'Natural sleep aid'
     ],
-    image: '/lovable-uploads/904fd2c3-ebd5-49b9-932d-a496f06f7410.png',
+    image: '/lovable-uploads/kefir full fat.jpg',
     category: 'Baked Milk',
     nutritionFacts: {
       servingSize: "240ml",
@@ -209,7 +209,7 @@ export const allProducts: ProductProps[] = [
       'No artificial additives',
       'Kid-friendly option'
     ],
-    image: '/lovable-uploads/985b2576-dab1-4283-8c2e-923d2a1b6e3a.png',
+    image: '/lovable-uploads/kefir full light and strawberry together.jpg',
     category: 'Fruit Drink',
     nutritionFacts: {
       servingSize: "240ml",

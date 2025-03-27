@@ -71,18 +71,20 @@ const ProductDetail = () => {
           
           {/* Product content */}
           <div className="grid md:grid-cols-2 gap-12 mb-16">
-            {/* Product image */}
-            <div className="relative">
+            {/* Product image with optimized loading */}
+            <div className="relative bg-gray-100 rounded-xl overflow-hidden">
               {!isImageLoaded && (
                 <div className="absolute inset-0 bg-gray-100 shimmer rounded-xl" />
               )}
               <motion.img
                 src={product.image}
                 alt={product.name}
-                className={`w-full rounded-xl shadow-md ${isImageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                className={`w-full rounded-xl ${isImageLoaded ? 'opacity-100' : 'opacity-0'}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: isImageLoaded ? 1 : 0 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.3 }}
+                loading="eager"
+                decoding="async"
                 onLoad={() => setIsImageLoaded(true)}
               />
             </div>
@@ -283,8 +285,14 @@ const ProductDetail = () => {
                   <div key={product.id} className="h-full">
                     <Link to={`/products/${product.id}`} className="block h-full">
                       <div className="bg-white rounded-xl border border-gray-200 overflow-hidden h-full hover:shadow-md transition-shadow">
-                        <div className="aspect-video">
-                          <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                        <div className="aspect-video bg-gray-100">
+                          <img 
+                            src={product.image} 
+                            alt={product.name} 
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                            decoding="async"
+                          />
                         </div>
                         <div className="p-4">
                           <h3 className="font-bold">{product.name}</h3>

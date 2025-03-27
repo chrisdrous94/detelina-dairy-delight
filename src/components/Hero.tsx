@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-// Images
+// Images with preloading
 const heroImages = [
   '/lovable-uploads/6f6222f5-7512-4eff-ba92-a82f28b5d78b.png',
   '/lovable-uploads/2a26b134-2724-4bd1-8093-788f23e215b0.png',
@@ -12,6 +12,28 @@ const heroImages = [
 
 const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState<boolean[]>([false, false, false]);
+
+  // Preload images
+  useEffect(() => {
+    const imagePromises = heroImages.map((src, index) => {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = () => {
+          setImagesLoaded(prev => {
+            const newState = [...prev];
+            newState[index] = true;
+            return newState;
+          });
+          resolve(true);
+        };
+        img.onerror = () => resolve(false);
+      });
+    });
+
+    Promise.all(imagePromises);
+  }, []);
 
   // Auto-rotate images
   useEffect(() => {

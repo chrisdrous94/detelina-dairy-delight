@@ -1,5 +1,5 @@
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useAnimation } from 'framer-motion';
 
 interface TimelineEventProps {
@@ -14,6 +14,7 @@ const TimelineEvent = ({ year, title, description, image, side }: TimelineEventP
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.5 });
   const controls = useAnimation();
+  const [imageLoaded, setImageLoaded] = useState(!image);
 
   useEffect(() => {
     if (isInView) {
@@ -72,11 +73,17 @@ const TimelineEvent = ({ year, title, description, image, side }: TimelineEventP
         <h3 className="text-xl font-bold mb-2 font-playfair">{title}</h3>
         <p className="text-gray-600 mb-4">{description}</p>
         {image && (
-          <div className="overflow-hidden rounded-lg">
+          <div className="overflow-hidden rounded-lg bg-gray-100">
+            {!imageLoaded && (
+              <div className="aspect-video bg-gray-100 shimmer" />
+            )}
             <img 
               src={image} 
               alt={title} 
-              className="w-full h-auto object-cover transition-transform hover:scale-105 duration-500"
+              className={`w-full h-auto object-cover transition-transform hover:scale-105 duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+              loading="lazy"
+              decoding="async"
+              onLoad={() => setImageLoaded(true)}
             />
           </div>
         )}
