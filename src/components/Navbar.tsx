@@ -37,7 +37,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
           <img
-           src="/lovable-uploads/DETELINA_logo_240x240_72dpi.png"
+           src="/lovable-uploads/DETELINA LOGO 2025 white-02.png"
           alt="Detelina Logo"
           className="h-10 w-auto"
           />
