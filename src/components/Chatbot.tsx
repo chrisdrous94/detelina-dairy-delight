@@ -188,7 +188,7 @@ const Chatbot = () => {
                       }`}
                     >
                       {message.type === 'bot' ? (
-                        <div dangerouslySetInnerHTML={renderMarkdown(message.content)} />
+                        <div dangerouslySetInnerHTML={renderMarkdown(message.content)} className="markdown" />
                       ) : (
                         <p>{message.content}</p>
                       )}
