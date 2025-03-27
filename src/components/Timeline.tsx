@@ -105,36 +105,36 @@ const Timeline = () => {
       side: 'left'
     },
     {
-      year: '2008',
+      year: '1996',
       title: 'First Product Line Launch',
       description: 'Launched our first line of products featuring Kefir and Tvorog, introducing Cypriots to traditional Eastern European dairy delicacies.',
-      image: '/lovable-uploads/f862d90f-8abe-4fa3-91f9-24259a0cc277.png',
+      image: '/lovable-uploads/product line first.jpg',
       side: 'right'
     },
     {
-      year: '2012',
-      title: 'Expansion of Production Facility',
+      year: '2004',
+      title: 'Expansion of Production Facility and alignment with EU regulations',
       description: 'Expanded our production facility in Limassol to meet growing demand, increasing our capacity and introducing new product lines.',
-      image: '/lovable-uploads/f83402e5-1e4f-4ac9-839d-9ef501da7c9f.png',
+      image: '/lovable-uploads/new factory building.jpg',
       side: 'left'
     },
     {
       year: '2015',
-      title: 'Introduction of Pro² Protein Line',
-      description: 'Developed and launched our innovative Pro² protein kefir line, targeting fitness enthusiasts and health-conscious consumers.',
-      image: '/lovable-uploads/7abd7e0b-a875-459f-8832-f6ddc829be89.png',
+      title: 'A Fresh New Look',
+      description: 'Our packaging was thoughtfully updated with elegant, professional labels — a reflection of our enduring commitment to quality and tradition in every product we offer.',
+      image: '/lovable-uploads/kefir full light and strawberry together.jpg',
       side: 'right'
     },
     {
-      year: '2019',
-      title: 'Island-wide Distribution',
-      description: 'Achieved island-wide distribution across Cyprus, making Detelina products available in major supermarkets and specialty stores.',
+      year: '2024',
+      title: 'A Beloved Classic, Now in a New Size',
+      description: 'Our best-selling tvorog (farmer cheese) became available in a convenient 250g package — offering the same authentic taste, now in a size that suits every home.',
       side: 'left'
     },
     {
-      year: '2023',
-      title: 'New Flavored Varieties',
-      description: 'Expanded our product range with new flavored varieties, including strawberry kefir and innovative seasonal offerings.',
+      year: '2025',
+      title: 'Introduction of Pro² Protein Line',
+      description: 'Developed and launched our innovative Pro² protein kefir line, targeting fitness enthusiasts and health-conscious consumers.',
       image: '/lovable-uploads/985b2576-dab1-4283-8c2e-923d2a1b6e3a.png',
       side: 'right'
     }
