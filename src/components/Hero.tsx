@@ -16,13 +16,13 @@ const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
   
-  // Track visibility for performance 
+  // Track visibility for performance - using smaller threshold for earlier loading
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
       },
-      { threshold: 0.1 }
+      { threshold: 0.05, rootMargin: "200px 0px" } // Increased root margin for earlier loading
     );
     
     if (heroRef.current) {
@@ -36,45 +36,59 @@ const Hero = () => {
     };
   }, []);
 
-  // Preload images with priority
+  // Preload images with enhanced priority
   useEffect(() => {
-    const imagePromises = heroImages.map((src, index) => {
-      return new Promise<boolean>((resolve) => {
+    // Preload first image immediately
+    const preloadFirstImage = new Image();
+    preloadFirstImage.fetchPriority = 'high';
+    preloadFirstImage.src = heroImages[0];
+    preloadFirstImage.onload = () => {
+      setImagesLoaded(prev => {
+        const newState = [...prev];
+        newState[0] = true;
+        return newState;
+      });
+    };
+    
+    // Use requestIdleCallback to load other images during browser idle time
+    const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
+    
+    idleCallback(() => {
+      // Load other images in sequence
+      heroImages.slice(1).forEach((src, index) => {
         const img = new Image();
-        
-        // Add loading priority
-        if (index === 0) {
-          img.fetchPriority = 'high';
-        }
-        
         img.src = src;
         img.onload = () => {
           setImagesLoaded(prev => {
             const newState = [...prev];
-            newState[index] = true;
+            newState[index + 1] = true;
             return newState;
           });
-          resolve(true);
         };
-        img.onerror = () => resolve(false);
       });
     });
-
-    Promise.all(imagePromises);
+    
+    return () => {
+      // Cancel any pending idle callbacks
+      if (window.cancelIdleCallback) {
+        window.cancelIdleCallback(idleCallback as any);
+      }
+    };
   }, []);
 
-  // Only auto-rotate images when the component is visible
+  // Only auto-rotate images when the component is visible and first image is loaded
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible || !imagesLoaded[0]) return;
     
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % heroImages.length);
     }, 5000);
     
     return () => clearInterval(interval);
-  }, [isVisible]);
+  }, [isVisible, imagesLoaded]);
 
   const allImagesLoaded = imagesLoaded.every(loaded => loaded);
+  const firstImageLoaded = imagesLoaded[0];
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden pt-20">
@@ -85,12 +99,13 @@ const Hero = () => {
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
               currentImage === index ? 'opacity-100' : 'opacity-0'
-            }`}
+            } ${index === 0 ? 'hardware-accelerated' : ''}`}
             style={{
-              backgroundImage: `url(${img})`,
+              backgroundImage: imagesLoaded[index] ? `url(${img})` : 'none',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               filter: 'brightness(0.8)',
+              willChange: index === currentImage ? 'opacity' : 'auto',
             }}
             aria-hidden="true"
           />
@@ -98,9 +113,9 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
       </div>
 
-      {/* Content - only animate when images are loaded */}
+      {/* Content - show as soon as first image loads */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className={`max-w-2xl transition-opacity duration-700 ${allImagesLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`max-w-2xl transition-opacity duration-700 ${firstImageLoaded ? 'opacity-100' : 'opacity-0'}`}>
           <span className="inline-block px-3 py-1 mb-4 bg-white/10 backdrop-blur-sm text-white text-sm font-medium rounded-full">
             Tradition in Every Drop
           </span>
@@ -128,9 +143,9 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator - only show when content is loaded */}
-      {allImagesLoaded && (
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
+      {/* Scroll indicator - only show when first image is loaded */}
+      {firstImageLoaded && (
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-fade-in">
           <div className="flex flex-col items-center">
             <span className="text-white text-sm mb-2">Scroll to discover</span>
             <div className="w-[30px] h-[50px] border-2 border-white rounded-full flex justify-center">

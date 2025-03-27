@@ -1,32 +1,53 @@
-
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import Hero from '../components/Hero';
-import About from '../components/About';
-import Newsletter from '../components/Newsletter';
-import Contact from '../components/Contact';
-import StoreLocator from '../components/StoreLocator';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import { featuredProducts } from '../data/products';
-import Chatbot from '../components/Chatbot';
+
+// Lazy load components that are not immediately needed
+const About = lazy(() => import('../components/About'));
+const Newsletter = lazy(() => import('../components/Newsletter'));
+const Contact = lazy(() => import('../components/Contact'));
+const StoreLocator = lazy(() => import('../components/StoreLocator'));
+const Footer = lazy(() => import('../components/Footer'));
+const Navbar = lazy(() => import('../components/Navbar'));
+const Chatbot = lazy(() => import('../components/Chatbot'));
+
+// Simple loading component for Suspense fallback
+const LoadingPlaceholder = () => (
+  <div className="w-full h-32 flex items-center justify-center">
+    <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+  </div>
+);
 
 const Index = () => {
   // Scroll to top on page load
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Prefetch critical components after initial render
+    const prefetchComponents = async () => {
+      // Small delay to ensure main content is processed first
+      setTimeout(() => {
+        import('../components/Navbar');
+        import('../components/Footer');
+      }, 100);
+    };
+    
+    prefetchComponents();
   }, []);
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
+      <Suspense fallback={<div className="h-20 bg-white"></div>}>
+        <Navbar />
+      </Suspense>
       
-      {/* Hero Section */}
+      {/* Hero Section - Critical, loaded eagerly */}
       <Hero />
       
-      {/* Featured Products */}
+      {/* Featured Products - Critical content */}
       <section className="py-20" id="products">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-12">
@@ -59,8 +80,10 @@ const Index = () => {
         </div>
       </section>
       
-      {/* About Section */}
-      <About />
+      {/* Remaining sections with Suspense for lazy loading */}
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <About />
+      </Suspense>
       
       {/* Benefits Section */}
       <section className="py-20 bg-white">
@@ -123,20 +146,26 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Store Locator */}
-      <StoreLocator />
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <StoreLocator />
+      </Suspense>
       
-      {/* Newsletter */}
-      <Newsletter />
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <Newsletter />
+      </Suspense>
       
-      {/* Contact */}
-      <Contact />
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <Contact />
+      </Suspense>
       
-      {/* Footer */}
-      <Footer />
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <Footer />
+      </Suspense>
       
-      {/* Chatbot */}
-      <Chatbot />
+      {/* Chatbot - loaded last since it's not immediately needed */}
+      <Suspense fallback={null}>
+        <Chatbot />
+      </Suspense>
     </div>
   );
 };
