@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const heroImages = [
   '/lovable-uploads/kefir-full-fat.jpg',
   '/lovable-uploads/kefir-full-light-and-strawberry-together.jpg',
-  'public/lovable-uploads/old-detelina-products.png',
+  '/lovable-uploads/old-detelina-products.png',
 ];
 
 const Hero = () => {
