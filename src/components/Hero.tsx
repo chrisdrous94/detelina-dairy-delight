@@ -72,10 +72,10 @@ const Hero = () => {
             Tradition in Every Drop
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Eastern European Taste, <br /> Made in Cyprus
+            Detelina, <br /> Cyprus’ First Fermented Dairy Brand
           </h1>
           <p className="text-lg md:text-xl text-white/90 mb-8 max-w-lg">
-            Authentic recipes, natural fermentation, and traditional Eastern European dairy products crafted with passion in small batches.
+            Authentic recipes, natural fermentation, and traditional dairy products crafted with passion in small batches.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
