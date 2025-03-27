@@ -121,13 +121,13 @@ const Footer = () => {
               <li className="flex">
                 <MapPin className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
                 <span className="text-gray-600">
-                  15 Agias Zonis, Limassol, Cyprus
+                  2 Akademias,Ypsonas,Limassol, Cyprus
                 </span>
               </li>
               <li className="flex">
                 <Phone className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
                 <span className="text-gray-600">
-                  +357 25 123 456
+                  +357 25 715 450
                 </span>
               </li>
               <li className="flex">
