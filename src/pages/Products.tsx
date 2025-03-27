@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 import { Search } from 'lucide-react';
 import { allProducts } from '../data/products';
+import Chatbot from '../components/Chatbot';
 
 // Extract unique categories
 const categories = ['All', ...Array.from(new Set(allProducts.map(p => p.category)))];
@@ -174,6 +175,7 @@ const Products = () => {
       </section>
       
       <Footer />
+      <Chatbot />
     </div>
   );
 };

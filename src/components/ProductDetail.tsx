@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import Newsletter from './Newsletter';
+import Chatbot from './Chatbot';
 
 const ProductDetail = () => {
   const { productId } = useParams<{ productId: string }>();
@@ -301,6 +302,7 @@ const ProductDetail = () => {
       
       <Newsletter />
       <Footer />
+      <Chatbot />
     </div>
   );
 };

@@ -13,7 +13,7 @@ export const allProducts: ProductProps[] = [
       'High in protein and calcium',
       'Naturally low in lactose'
     ],
-    image: '/lovable-uploads/a4a5e8d1-3687-49fd-bc34-81ebb8b93409.png',
+    image: '/lovable-uploads/f862d90f-8abe-4fa3-91f9-24259a0cc277.png',
     category: 'Fermented Drink',
     nutritionFacts: {
       servingSize: "240ml",
@@ -41,7 +41,7 @@ export const allProducts: ProductProps[] = [
       'Light, refreshing taste',
       'Ideal for daily consumption'
     ],
-    image: '/lovable-uploads/2a26b134-2724-4bd1-8093-788f23e215b0.png',
+    image: '/lovable-uploads/068805be-ca89-42a8-938c-0e86305658da.png',
     category: 'Fermented Drink',
     nutritionFacts: {
       servingSize: "240ml",
@@ -69,7 +69,7 @@ export const allProducts: ProductProps[] = [
       'Muscle maintenance',
       'Great taste and nutrition'
     ],
-    image: '/lovable-uploads/313fea23-3c0a-4bed-8169-f67c5deb519e.png',
+    image: '/lovable-uploads/7abd7e0b-a875-459f-8832-f6ddc829be89.png',
     category: 'Fitness Drink',
     nutritionFacts: {
       servingSize: "240ml",
@@ -97,7 +97,7 @@ export const allProducts: ProductProps[] = [
       'Contains beneficial bacteria',
       'Source of essential vitamins'
     ],
-    image: '/lovable-uploads/5de99ef6-bb87-44a5-8018-8a78cd7eaf0b.png',
+    image: '/lovable-uploads/cbe72072-6ede-4700-ad13-f8d2a6c092c3.png',
     category: 'Sour Cream',
     nutritionFacts: {
       servingSize: "30g",
@@ -125,7 +125,7 @@ export const allProducts: ProductProps[] = [
       'Versatile culinary use',
       'Contains essential amino acids'
     ],
-    image: '/lovable-uploads/de5ba587-3def-4d3e-bde0-015732774c70.png',
+    image: '/lovable-uploads/b5429bc3-0536-42ad-bc10-962fc7e67cfd.png',
     category: 'Fresh Cheese',
     nutritionFacts: {
       servingSize: "100g",
@@ -153,7 +153,7 @@ export const allProducts: ProductProps[] = [
       'Perfect for diets',
       'Versatile in recipes'
     ],
-    image: '/lovable-uploads/11204adb-75b3-48e4-9ecb-08c3ef95f5ca.png',
+    image: '/lovable-uploads/4a27570c-fddc-4580-b730-1d14816a8f8a.png',
     category: 'Fresh Cheese',
     nutritionFacts: {
       servingSize: "100g",
@@ -181,7 +181,7 @@ export const allProducts: ProductProps[] = [
       'Contains beneficial probiotics',
       'Natural sleep aid'
     ],
-    image: '/lovable-uploads/6f6222f5-7512-4eff-ba92-a82f28b5d78b.png',
+    image: '/lovable-uploads/904fd2c3-ebd5-49b9-932d-a496f06f7410.png',
     category: 'Baked Milk',
     nutritionFacts: {
       servingSize: "240ml",
@@ -209,7 +209,7 @@ export const allProducts: ProductProps[] = [
       'No artificial additives',
       'Kid-friendly option'
     ],
-    image: '/lovable-uploads/8040c74b-81ed-41c3-a04d-71ec03b50bfa.png',
+    image: '/lovable-uploads/985b2576-dab1-4283-8c2e-923d2a1b6e3a.png',
     category: 'Fruit Drink',
     nutritionFacts: {
       servingSize: "240ml",
@@ -229,4 +229,3 @@ export const allProducts: ProductProps[] = [
 ];
 
 export const featuredProducts = allProducts.slice(0, 4);
-
