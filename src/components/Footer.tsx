@@ -15,9 +15,9 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/DETELINA LOGO 2025 white-02.png" 
                 alt="Detelina Dairy Logo" 
-                className="h-8 w-auto mr-2" 
+                className="h-15 w-auto mr-5" 
               />
-              
+
             </div>
             <p className="text-gray-600 mb-4">
               Authentic dairy products made in Cyprus using traditional recipes and natural fermentation processes.
