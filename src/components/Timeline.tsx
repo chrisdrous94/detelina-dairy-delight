@@ -91,7 +91,7 @@ const Timeline = () => {
 
   const events: TimelineEventProps[] = [
     {
-      year: '2005',
+      year: '1995',
       title: 'Founding of Detelina Dairy',
       description: 'Detelina Dairy was established in Cyprus by Eastern European dairy experts with a vision to bring authentic fermented dairy products to the local market.',
       image: '/lovable-uploads/3ed39e21-d1a1-4c27-99a6-0d527c891e6c.png',

@@ -13,7 +13,7 @@ export const allProducts: ProductProps[] = [
       'High in protein and calcium',
       'Naturally low in lactose'
     ],
-    image: '/lovable-uploads/f862d90f-8abe-4fa3-91f9-24259a0cc277.png',
+    image: '/lovable-uploads/kefir full fat.jpg',
     category: 'Fermented Drink',
     nutritionFacts: {
       servingSize: "240ml",

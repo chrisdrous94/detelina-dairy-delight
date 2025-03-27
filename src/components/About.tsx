@@ -35,7 +35,7 @@ const About = () => {
             </h2>
             <div className="space-y-4 text-gray-700">
               <p>
-                Founded in 2007, Detelina Dairy brings authentic Eastern European dairy traditions to Cyprus. Our small-batch production preserves the natural flavors and health benefits that have been cherished for generations.
+                Founded in 1995, Detelina Dairy brings authentic Eastern European dairy traditions to Cyprus. Our small-batch production preserves the natural flavors and health benefits that have been cherished for generations.
               </p>
               <p>
                 We're passionate about crafting fermented dairy products using traditional methods and recipes that have stood the test of time. Every product we make is a testament to our commitment to quality, taste, and nutritional value.
