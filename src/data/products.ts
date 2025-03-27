@@ -16,7 +16,7 @@ export const allProducts: ProductProps[] = [
     image: '/lovable-uploads/kefir full fat.jpg',
     category: 'Fermented Drink',
     nutritionFacts: {
-      servingSize: "240ml",
+      servingSize: "500ml",
       calories: 120,
       totalFat: "3g",
       saturatedFat: "2g",
@@ -41,7 +41,7 @@ export const allProducts: ProductProps[] = [
       'Light, refreshing taste',
       'Ideal for daily consumption'
     ],
-    image: '/lovable-uploads/068805be-ca89-42a8-938c-0e86305658da.png',
+    image: 'public/lovable-uploads/kefir light.jpg',
     category: 'Fermented Drink',
     nutritionFacts: {
       servingSize: "240ml",
@@ -69,7 +69,7 @@ export const allProducts: ProductProps[] = [
       'Muscle maintenance',
       'Great taste and nutrition'
     ],
-    image: '/lovable-uploads/7abd7e0b-a875-459f-8832-f6ddc829be89.png',
+    image: 'public/lovable-uploads/pro² protein kefir black font.jpg',
     category: 'Fitness Drink',
     nutritionFacts: {
       servingSize: "240ml",
@@ -97,7 +97,7 @@ export const allProducts: ProductProps[] = [
       'Contains beneficial bacteria',
       'Source of essential vitamins'
     ],
-    image: '/lovable-uploads/cbe72072-6ede-4700-ad13-f8d2a6c092c3.png',
+    image: 'public/lovable-uploads/smetana.png',
     category: 'Sour Cream',
     nutritionFacts: {
       servingSize: "30g",
@@ -125,7 +125,7 @@ export const allProducts: ProductProps[] = [
       'Versatile culinary use',
       'Contains essential amino acids'
     ],
-    image: '/lovable-uploads/b5429bc3-0536-42ad-bc10-962fc7e67cfd.png',
+    image: 'public/lovable-uploads/tvorog 450g.png',
     category: 'Fresh Cheese',
     nutritionFacts: {
       servingSize: "100g",
