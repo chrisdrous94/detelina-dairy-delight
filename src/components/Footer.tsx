@@ -13,14 +13,14 @@ const Footer = () => {
           <div>
             <div className="flex items-center mb-4">
               <img 
-                src="/lovable-uploads/8040c74b-81ed-41c3-a04d-71ec03b50bfa.png" 
+                src="/lovable-uploads/DETELINA LOGO 2025 white-02.png" 
                 alt="Detelina Dairy Logo" 
                 className="h-8 w-auto mr-2" 
               />
-              <span className="text-lg font-bold">DETELINA DAIRY</span>
+              
             </div>
             <p className="text-gray-600 mb-4">
-              Authentic Eastern European dairy products made in Cyprus using traditional recipes and natural fermentation processes.
+              Authentic dairy products made in Cyprus using traditional recipes and natural fermentation processes.
             </p>
             <div className="flex space-x-4">
               <a 
