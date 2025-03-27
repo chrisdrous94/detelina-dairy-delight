@@ -101,7 +101,7 @@ const Timeline = () => {
       year: '1995',
       title: 'Founding of Detelina Dairy',
       description: 'Detelina Dairy was established in Cyprus by Eastern European dairy experts with a vision to bring authentic fermented dairy products to the local market.',
-      image: 'lovable-uploads/grandma old factory.jpg',
+      image: 'chrisdrous94/detelina-dairy-delight/public/lovable-uploads/grandma old factory.jpg',
       side: 'left'
     },
     {
@@ -135,7 +135,7 @@ const Timeline = () => {
       year: '2025',
       title: 'Introduction of Pro² Protein Line',
       description: 'Developed and launched our innovative Pro² protein kefir line, targeting fitness enthusiasts and health-conscious consumers.',
-      image: 'public/lovable-uploads/pro² protein kefir black font.jpg',
+      image: '/lovable-uploads/985b2576-dab1-4283-8c2e-923d2a1b6e3a.png',
       side: 'right'
     }
   ];

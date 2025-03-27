@@ -18,7 +18,7 @@ const About = () => {
             </div>
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-white p-4 rounded-xl shadow-lg hidden md:flex items-center justify-center">
               <img 
-                src="/lovable-uploads/factory facade.jpeg" 
+                src="/lovable-uploads/8040c74b-81ed-41c3-a04d-71ec03b50bfa.png" 
                 alt="Detelina Logo" 
                 className="max-w-full max-h-full object-contain"
               />
