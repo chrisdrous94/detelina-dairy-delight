@@ -1,253 +1,251 @@
 
 import { useState, useRef, useEffect } from 'react';
-import { Send, X, MessageSquare } from 'lucide-react';
+import { X, Send, MessageSquare, Loader } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { marked } from 'marked';
 
-// Sample FAQ data
-const faqData = [
+interface Message {
+  type: 'user' | 'bot';
+  text: string;
+  timestamp: Date;
+}
+
+const initialMessages: Message[] = [
   {
-    question: "What makes Detelina Dairy products unique?",
-    answer: "Detelina Dairy products are made using authentic Eastern European recipes with natural fermentation processes. We maintain traditional methods while ensuring high-quality standards."
-  },
-  {
-    question: "Are your products suitable for people with lactose intolerance?",
-    answer: "Many of our fermented products like kefir have reduced lactose content due to the fermentation process, making them easier to digest for some people with mild lactose intolerance. However, individual responses may vary."
-  },
-  {
-    question: "Where can I buy Detelina Dairy products?",
-    answer: "Our products are available in selected supermarkets across Cyprus including Papantoniou, AlphaMega, Metro, and Sklavenitis. You can also purchase directly from our factory store in Limassol."
-  },
-  {
-    question: "Do your products contain preservatives?",
-    answer: "No, we pride ourselves on making all-natural dairy products without artificial preservatives, colors, or flavors. The natural fermentation process helps preserve our products."
-  },
-  {
-    question: "What is kefir and what are its benefits?",
-    answer: "Kefir is a fermented milk drink that originates from Eastern Europe. It's rich in probiotics that support gut health, boost the immune system, and may improve digestion. It's also a good source of protein, calcium, and B vitamins."
-  },
-  {
-    question: "How long do your products stay fresh?",
-    answer: "Our products have a shelf life of 3-4 weeks when properly refrigerated. Always check the expiration date on the packaging and keep products refrigerated at 2-6°C."
-  },
-  {
-    question: "What is tvorog and how can I use it?",
-    answer: "Tvorog is a fresh farmer's cheese similar to cottage cheese but with a drier consistency. It's versatile and can be used in both sweet and savory dishes. Try it with honey and fruits for breakfast, use it in cheesecakes, or make traditional Eastern European dishes like syrniki (cheese pancakes)."
-  },
-  {
-    question: "Are your products pasteurized?",
-    answer: "Yes, all our milk is pasteurized before the fermentation process to ensure safety while preserving the ability to culture beneficial bacteria during fermentation."
+    type: 'bot',
+    text: 'Hello! I\'m the Detelina Dairy assistant. How can I help you today? You can ask me about our products, where to find them, or nutritional information.',
+    timestamp: new Date()
   }
 ];
 
+// Predefined responses based on keywords
+const predefinedResponses: Record<string, string> = {
+  'hello': 'Hello! How can I help you today?',
+  'hi': 'Hi there! What would you like to know about Detelina Dairy products?',
+  'product': 'Our main products include Kefir, Tvorog (fresh cheese), Smetana (sour cream), Ryazhenka (baked milk), and our Pro² Protein Kefir line. Which one would you like to learn more about?',
+  'kefir': 'Kefir is a fermented milk drink rich in probiotics. We offer classic Kefir, Light Kefir with reduced fat, flavored options like Strawberry, and our Pro² Protein Kefir for fitness enthusiasts.',
+  'tvorog': 'Tvorog is a fresh cottage cheese popular in Eastern European cuisine. We offer it in 9% and 5% fat varieties. It\'s perfect for breakfast dishes, cheesecakes, and can be enjoyed with fruits and honey.',
+  'smetana': 'Smetana is a thick, rich sour cream that adds depth to both savory and sweet dishes. It\'s essential for authentic borsch, blini, or as a topping for traditional Eastern European dishes.',
+  'ryazhenka': 'Ryazhenka is a baked fermented milk product with a natural caramelized flavor and a velvety texture. It has a gentle effect on the digestive system and is often enjoyed as a calming evening drink.',
+  'protein': 'Our Pro² Protein Kefir contains 28g of protein per serving and comes in delicious flavors like Banana+Vanilla and Cherry. It\'s perfect for fitness enthusiasts and active lifestyles.',
+  'where': 'You can find Detelina Dairy products in major supermarkets across Cyprus, including Alpha-Mega, Metro, and Papantoniou. We also sell directly from our factory store in Limassol.',
+  'benefit': 'Our fermented dairy products are rich in probiotics that support gut health, boost immunity, and improve digestion. They\'re also excellent sources of protein, calcium, and essential vitamins.',
+  'price': 'Prices vary by product and size. Our standard Kefir bottles start around €2.20, while specialty products like our Pro² Protein Kefir are priced from €3.30. For current pricing, please check with your local retailer.',
+  'address': 'Our factory is located at Akademias 2, Ypsonas, Limassol, Cyprus.',
+  'contact': 'You can contact us at +357 25 715450 or email info@detelina-dairy.com. Our customer service is available Monday to Friday, 8:00 AM to 5:00 PM.',
+  'probiotics': 'Probiotics are beneficial bacteria that support gut health. Our fermented dairy products are natural sources of these helpful microorganisms, contributing to better digestion and a stronger immune system.',
+  'allergies': 'Our products contain milk. If you have lactose intolerance, our Kefir might be easier to digest as the fermentation process reduces lactose content, but please consult with your healthcare provider.',
+  'recipe': 'We have many traditional recipes using our products! Try making syrniki (cheese pancakes) with our Tvorog, or use Smetana in borscht. Visit our website\'s recipe section for detailed instructions.',
+  'thank': 'You\'re welcome! Is there anything else I can help you with?',
+  'thanks': 'You\'re welcome! Is there anything else I can help you with?',
+  'bye': 'Thank you for chatting with us! Feel free to return anytime you have questions about Detelina Dairy products.'
+};
+
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<{type: 'user' | 'bot', content: string}[]>([
-    {type: 'bot', content: 'Hello! I\'m Detelina\'s assistant. How can I help you today with information about our dairy products?'}
-  ]);
   const [inputValue, setInputValue] = useState('');
-  const [isThinking, setIsThinking] = useState(false);
-  const messageEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [messages, setMessages] = useState<Message[]>(initialMessages);
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Function to find answer from FAQ data
-  const findAnswer = (question: string) => {
-    const lowerQuestion = question.toLowerCase();
-    
-    // Score each FAQ question based on keyword matches
-    const scoredFaqs = faqData.map(faq => {
-      const faqLower = faq.question.toLowerCase();
-      let score = 0;
-      
-      // Split user question into words
-      const userWords = lowerQuestion.split(/\s+/).filter(word => word.length > 3);
-      
-      // Count matching words
-      userWords.forEach(word => {
-        if (faqLower.includes(word)) score += 1;
-      });
-      
-      return { ...faq, score };
-    });
-    
-    // Sort by score and get the highest
-    const bestMatch = scoredFaqs.sort((a, b) => b.score - a.score)[0];
-    
-    // If the score is too low, return a generic response
-    if (bestMatch.score < 1) {
-      return "I'm not sure I understand your question. Could you please rephrase or ask about our products, where to buy them, or their benefits?";
-    }
-    
-    return bestMatch.answer;
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleSendMessage = (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const getResponse = (userMessage: string): string => {
+    const lowerCaseMessage = userMessage.toLowerCase();
     
+    // Check for keyword matches
+    for (const keyword in predefinedResponses) {
+      if (lowerCaseMessage.includes(keyword)) {
+        return predefinedResponses[keyword];
+      }
+    }
+    
+    // Default response
+    return "I'm not sure how to respond to that. Would you like to know about our products, where to find them, or nutritional information?";
+  };
+
+  const handleSendMessage = () => {
     if (inputValue.trim() === '') return;
     
     // Add user message
-    const userMessage = inputValue.trim();
-    setMessages(prev => [...prev, {type: 'user', content: userMessage}]);
-    setInputValue('');
-    setIsThinking(true);
+    const userMessage: Message = {
+      type: 'user',
+      text: inputValue,
+      timestamp: new Date()
+    };
     
-    // Simulate processing time for more natural interaction
+    setMessages([...messages, userMessage]);
+    setInputValue('');
+    setIsTyping(true);
+    
+    // Simulate bot thinking and typing
     setTimeout(() => {
-      const botResponse = findAnswer(userMessage);
-      setMessages(prev => [...prev, {type: 'bot', content: botResponse}]);
-      setIsThinking(false);
-    }, 600);
+      const botResponse: Message = {
+        type: 'bot',
+        text: getResponse(userMessage.text),
+        timestamp: new Date()
+      };
+      
+      setMessages(prevMessages => [...prevMessages, botResponse]);
+      setIsTyping(false);
+    }, 1500);
   };
 
-  // Auto-scroll to bottom when messages change
-  useEffect(() => {
-    messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
-  
-  // Focus input when chat opens
-  useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 100);
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSendMessage();
     }
-  }, [isOpen]);
+  };
 
-  // Prevent body scroll when chat is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isOpen]);
-  
-  // Render markdown in bot messages
-  const renderMarkdown = (content: string) => {
-    return { __html: marked.parse(content) };
+  const formatTime = (date: Date): string => {
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
   return (
     <>
-      {/* Chat toggle button */}
+      {/* Chat button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-primary text-white p-4 rounded-full shadow-lg hover:bg-primary-dark transition-colors z-50"
+        className="fixed bottom-6 right-6 bg-primary text-white rounded-full p-4 shadow-lg hover:bg-primary-dark transition-colors z-50"
         aria-label="Open chat"
       >
-        <MessageSquare className="h-6 w-6" />
+        <MessageSquare size={24} />
       </button>
       
-      {/* Chat modal */}
+      {/* Chat window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setIsOpen(false)}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="fixed bottom-24 right-6 w-96 max-w-full bg-white rounded-xl shadow-2xl overflow-hidden z-50 border border-gray-200"
           >
-            <motion.div
-              className="bg-white rounded-xl shadow-xl w-full max-w-md h-[80vh] flex flex-col overflow-hidden"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Chat header */}
-              <div className="px-4 py-3 bg-primary text-white flex justify-between items-center">
-                <h3 className="font-semibold">Detelina Dairy Assistant</h3>
-                <button 
-                  onClick={() => setIsOpen(false)}
-                  className="p-1 rounded-full hover:bg-white/20 transition-colors"
-                  aria-label="Close chat"
+            {/* Header */}
+            <div className="bg-primary text-white p-4 flex justify-between items-center">
+              <div className="flex items-center">
+                <img 
+                  src="/lovable-uploads/f83402e5-1e4f-4ac9-839d-9ef501da7c9f.png" 
+                  alt="Detelina Dairy Logo" 
+                  className="w-8 h-8 mr-2 rounded-full bg-white"
+                />
+                <h3 className="font-medium">Detelina Dairy Assistant</h3>
+              </div>
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="rounded-full hover:bg-primary-dark transition-colors p-1"
+                aria-label="Close chat"
+              >
+                <X size={18} />
+              </button>
+            </div>
+            
+            {/* Messages */}
+            <div className="h-96 overflow-y-auto p-4 bg-gray-50">
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`mb-4 flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <X className="h-5 w-5" />
+                  <div
+                    className={`p-3 rounded-lg max-w-[80%] ${
+                      message.type === 'user'
+                        ? 'bg-primary text-white rounded-br-none'
+                        : 'bg-white text-gray-800 rounded-bl-none shadow-sm'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <span className={`text-xs mt-1 block ${message.type === 'user' ? 'text-primary-50' : 'text-gray-500'}`}>
+                      {formatTime(message.timestamp)}
+                    </span>
+                  </div>
+                </div>
+              ))}
+              
+              {/* Typing indicator */}
+              {isTyping && (
+                <div className="flex justify-start mb-4">
+                  <div className="p-3 rounded-lg bg-white shadow-sm rounded-bl-none">
+                    <div className="flex items-center">
+                      <div className="dot-typing"></div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              <div ref={messagesEndRef} />
+            </div>
+            
+            {/* Input */}
+            <div className="border-t border-gray-200 p-4 bg-white">
+              <div className="flex items-center">
+                <input
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleKeyPress}
+                  placeholder="Type your message..."
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+                <button
+                  onClick={handleSendMessage}
+                  disabled={inputValue.trim() === ''}
+                  className={`px-4 py-2 rounded-r-full text-white ${
+                    inputValue.trim() === '' ? 'bg-gray-400' : 'bg-primary hover:bg-primary-dark'
+                  } transition-colors`}
+                >
+                  <Send size={18} />
                 </button>
               </div>
-              
-              {/* Chat messages */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-4">
-                {messages.map((message, index) => (
-                  <div
-                    key={index}
-                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
-                  >
-                    <div
-                      className={`max-w-[80%] p-3 rounded-lg ${
-                        message.type === 'user'
-                          ? 'bg-primary text-white rounded-tr-none'
-                          : 'bg-gray-100 text-gray-800 rounded-tl-none'
-                      }`}
-                    >
-                      {message.type === 'bot' ? (
-                        <div dangerouslySetInnerHTML={renderMarkdown(message.content)} />
-                      ) : (
-                        <p>{message.content}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-                
-                {isThinking && (
-                  <div className="flex justify-start">
-                    <div className="bg-gray-100 text-gray-800 p-3 rounded-lg rounded-tl-none max-w-[80%]">
-                      <div className="flex space-x-2">
-                        <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                        <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                        <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '300ms' }}></div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                
-                <div ref={messageEndRef} />
-              </div>
-              
-              {/* Input area */}
-              <form onSubmit={handleSendMessage} className="p-3 border-t border-gray-200">
-                <div className="flex space-x-2">
-                  <input
-                    ref={inputRef}
-                    type="text"
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Type your question..."
-                    className="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
-                  />
-                  <button
-                    type="submit"
-                    className="bg-primary text-white p-2 rounded-full hover:bg-primary-dark transition-colors"
-                    disabled={isThinking}
-                    aria-label="Send message"
-                  >
-                    <Send className="h-5 w-5" />
-                  </button>
-                </div>
-              </form>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
       
-      <style>
-        {`
-          .markdown > * {
-            margin-bottom: 0.5rem;
+      {/* CSS for typing indicator */}
+      <style jsx>{`
+        .dot-typing {
+          position: relative;
+          left: -9999px;
+          width: 6px;
+          height: 6px;
+          border-radius: 5px;
+          background-color: #9880ff;
+          color: #9880ff;
+          box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
+          animation: dotTyping 1.5s infinite linear;
+        }
+
+        @keyframes dotTyping {
+          0% {
+            box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
           }
-          .markdown a {
-            color: #3b82f6;
-            text-decoration: underline;
+          16.667% {
+            box-shadow: 9984px -10px 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
           }
-        `}
-      </style>
+          33.333% {
+            box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
+          }
+          50% {
+            box-shadow: 9984px 0 0 0 #9880ff, 9994px -10px 0 0 #9880ff, 10004px 0 0 0 #9880ff;
+          }
+          66.667% {
+            box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
+          }
+          83.333% {
+            box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px -10px 0 0 #9880ff;
+          }
+          100% {
+            box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
+          }
+        }
+      `}</style>
     </>
   );
 };

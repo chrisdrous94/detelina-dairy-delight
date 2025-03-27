@@ -12,7 +12,7 @@ interface TimelineEventProps {
 
 const TimelineEvent = ({ year, title, description, image, side }: TimelineEventProps) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 }); // Changed to once: true for performance
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
   const controls = useAnimation();
   const [imageLoaded, setImageLoaded] = useState(!image);
 
@@ -25,13 +25,13 @@ const TimelineEvent = ({ year, title, description, image, side }: TimelineEventP
   const contentVariants = {
     hidden: { 
       opacity: 0, 
-      x: side === 'left' ? -30 : 30 // Reduced movement for better performance
+      x: side === 'left' ? -50 : 50 
     },
     visible: { 
       opacity: 1, 
       x: 0,
       transition: { 
-        duration: 0.6, // Slightly faster animation
+        duration: 0.8, 
         ease: [0.16, 1, 0.3, 1] 
       }
     }
@@ -43,9 +43,9 @@ const TimelineEvent = ({ year, title, description, image, side }: TimelineEventP
       <div className="w-full md:w-1/12 md:p-4 flex justify-center md:justify-end">
         <motion.div 
           className="text-3xl font-bold text-primary flex items-center justify-center"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.4 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.5 }}
         >
           {year}
         </motion.div>
@@ -58,7 +58,7 @@ const TimelineEvent = ({ year, title, description, image, side }: TimelineEventP
             className="absolute w-3 h-3 rounded-full bg-primary top-0 left-1/2 transform -translate-x-1/2"
             initial={{ scale: 0 }}
             animate={isInView ? { scale: 1 } : { scale: 0 }}
-            transition={{ delay: 0.1, duration: 0.3 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
           />
         </div>
       </div>
@@ -84,8 +84,6 @@ const TimelineEvent = ({ year, title, description, image, side }: TimelineEventP
               loading="lazy"
               decoding="async"
               onLoad={() => setImageLoaded(true)}
-              width="400" 
-              height="225"
             />
           </div>
         )}
@@ -96,39 +94,14 @@ const TimelineEvent = ({ year, title, description, image, side }: TimelineEventP
 
 const Timeline = () => {
   const timelineRef = useRef(null);
-  const isInView = useInView(timelineRef, { once: true, amount: 0.1 }); // Changed to once: true
-  const [imagesPreloaded, setImagesPreloaded] = useState(false);
-
-  // Preload images for better performance
-  useEffect(() => {
-    const imageUrls = events
-      .filter(event => event.image)
-      .map(event => event.image as string);
-    
-    if (imageUrls.length > 0) {
-      const imagePromises = imageUrls.map(url => {
-        return new Promise((resolve) => {
-          const img = new Image();
-          img.src = url;
-          img.onload = () => resolve(true);
-          img.onerror = () => resolve(false);
-        });
-      });
-      
-      Promise.all(imagePromises).then(() => {
-        setImagesPreloaded(true);
-      });
-    } else {
-      setImagesPreloaded(true);
-    }
-  }, []);
+  const isInView = useInView(timelineRef, { once: false, amount: 0.1 });
 
   const events: TimelineEventProps[] = [
     {
       year: '1995',
       title: 'Founding of Detelina Dairy',
       description: 'Detelina Dairy was established in Cyprus by Eastern European dairy experts with a vision to bring authentic fermented dairy products to the local market.',
-      image: '/lovable-uploads/grandma old factory.jpg',
+      image: 'lovable-uploads/grandma old factory.jpg',
       side: 'left'
     },
     {
@@ -162,7 +135,7 @@ const Timeline = () => {
       year: '2025',
       title: 'Introduction of Pro² Protein Line',
       description: 'Developed and launched our innovative Pro² protein kefir line, targeting fitness enthusiasts and health-conscious consumers.',
-      image: '/lovable-uploads/pro² protein kefir black font.jpg',
+      image: 'public/lovable-uploads/pro² protein kefir black font.jpg',
       side: 'right'
     }
   ];
@@ -192,18 +165,16 @@ const Timeline = () => {
               className="absolute top-0 bottom-0 left-0 right-0 bg-primary"
               initial={{ scaleY: 0, originY: 0 }}
               animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
-              transition={{ duration: 1.2, ease: "easeInOut" }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
             />
           </div>
           
-          {/* Only render events if images are preloaded or if there's no image to preload */}
-          {imagesPreloaded && (
-            <div className="space-y-12">
-              {events.map((event, index) => (
-                <TimelineEvent key={index} {...event} />
-              ))}
-            </div>
-          )}
+          {/* Events */}
+          <div className="space-y-12">
+            {events.map((event, index) => (
+              <TimelineEvent key={index} {...event} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

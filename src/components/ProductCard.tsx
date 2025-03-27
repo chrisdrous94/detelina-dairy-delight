@@ -1,5 +1,5 @@
 
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 
@@ -29,52 +29,26 @@ export interface ProductProps {
 
 const ProductCard = ({ product }: { product: ProductProps }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  // Use Intersection Observer to lazy load images
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { rootMargin: '200px 0px', threshold: 0.1 }
-    );
-    
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
-    
-    return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
-      }
-    };
-  }, []);
 
   return (
-    <div ref={cardRef} className="product-card group h-full">
+    <div className="product-card group h-full">
       <div className="aspect-square overflow-hidden relative bg-gray-100">
         {/* Image loading state */}
         {!isLoaded && (
           <div className="absolute inset-0 bg-gray-100 shimmer" />
         )}
         
-        {/* Product image with optimized loading */}
-        {isVisible && (
-          <img
-            src={product.image}
-            alt={product.name}
-            className={`product-image w-full h-full object-cover transition-opacity duration-300 ${
-              isLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
-            loading="lazy"
-            decoding="async"
-            onLoad={() => setIsLoaded(true)}
-            width="300" 
-            height="300"
-          />
-        )}
+        {/* Product image with loading optimization */}
+        <img
+          src={product.image}
+          alt={product.name}
+          className={`product-image w-full h-full object-cover transition-opacity duration-300 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          loading="lazy"
+          decoding="async"
+          onLoad={() => setIsLoaded(true)}
+        />
         
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">

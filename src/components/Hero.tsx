@@ -1,9 +1,9 @@
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-// Images with preloading - using proper paths
+// Images with preloading
 const heroImages = [
   '/lovable-uploads/6f6222f5-7512-4eff-ba92-a82f28b5d78b.png',
   '/lovable-uploads/2a26b134-2724-4bd1-8093-788f23e215b0.png',
@@ -13,40 +13,12 @@ const heroImages = [
 const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState<boolean[]>([false, false, false]);
-  const [isVisible, setIsVisible] = useState(false);
-  const heroRef = useRef<HTMLElement>(null);
-  
-  // Track visibility for performance 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-    
-    if (heroRef.current) {
-      observer.observe(heroRef.current);
-    }
-    
-    return () => {
-      if (heroRef.current) {
-        observer.unobserve(heroRef.current);
-      }
-    };
-  }, []);
 
-  // Preload images with priority
+  // Preload images
   useEffect(() => {
     const imagePromises = heroImages.map((src, index) => {
-      return new Promise<boolean>((resolve) => {
+      return new Promise((resolve) => {
         const img = new Image();
-        
-        // Add loading priority
-        if (index === 0) {
-          img.fetchPriority = 'high';
-        }
-        
         img.src = src;
         img.onload = () => {
           setImagesLoaded(prev => {
@@ -63,22 +35,18 @@ const Hero = () => {
     Promise.all(imagePromises);
   }, []);
 
-  // Only auto-rotate images when the component is visible
+  // Auto-rotate images
   useEffect(() => {
-    if (!isVisible) return;
-    
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % heroImages.length);
     }, 5000);
     
     return () => clearInterval(interval);
-  }, [isVisible]);
-
-  const allImagesLoaded = imagesLoaded.every(loaded => loaded);
+  }, []);
 
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden pt-20">
-      {/* Background image with optimized loading */}
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
+      {/* Background image with parallax effect */}
       <div className="absolute inset-0 z-0">
         {heroImages.map((img, index) => (
           <div
@@ -92,15 +60,14 @@ const Hero = () => {
               backgroundPosition: 'center',
               filter: 'brightness(0.8)',
             }}
-            aria-hidden="true"
           />
         ))}
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
       </div>
 
-      {/* Content - only animate when images are loaded */}
+      {/* Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className={`max-w-2xl transition-opacity duration-700 ${allImagesLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="max-w-2xl animate-enter">
           <span className="inline-block px-3 py-1 mb-4 bg-white/10 backdrop-blur-sm text-white text-sm font-medium rounded-full">
             Tradition in Every Drop
           </span>
@@ -128,17 +95,15 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator - only show when content is loaded */}
-      {allImagesLoaded && (
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
-          <div className="flex flex-col items-center">
-            <span className="text-white text-sm mb-2">Scroll to discover</span>
-            <div className="w-[30px] h-[50px] border-2 border-white rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse-soft" />
-            </div>
+      {/* Scroll indicator */}
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
+        <div className="flex flex-col items-center">
+          <span className="text-white text-sm mb-2">Scroll to discover</span>
+          <div className="w-[30px] h-[50px] border-2 border-white rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse-soft" />
           </div>
         </div>
-      )}
+      </div>
     </section>
   );
 };
