@@ -1,4 +1,3 @@
-
 import { ProductProps } from "../components/ProductCard";
 
 export const allProducts: ProductProps[] = [
@@ -41,7 +40,7 @@ export const allProducts: ProductProps[] = [
       'Cost-effective option',
       'Perfect for shared meals'
     ],
-    image: '/lovable-uploads/kefir-full-fat.jpg', // Replace with your image
+    image: '/lovable-uploads/kefir-full-fat.jpg', // replace with correct image when ready
     category: 'Fermented Drink',
     nutritionFacts: {
       servingSize: "500ml",
@@ -227,3 +226,6 @@ export const allProducts: ProductProps[] = [
     }
   }
 ];
+
+// Export the first 4 as featured
+export const featuredProducts = allProducts.slice(0, 4);
