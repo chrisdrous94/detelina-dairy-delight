@@ -8,12 +8,12 @@ import { allProducts } from '../data/products';
 import Chatbot from '../components/Chatbot';
 
 // Extract unique categories
-const categories = ['All', ...Array.from(new Set(allProducts.map(p => p.category)))];
+{/*const categories = ['All', ...Array.from(new Set(allProducts.map(p => p.category)))];
 
 const Products = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredProducts, setFilteredProducts] = useState(allProducts);
+  const [filteredProducts, setFilteredProducts] = useState(allProducts);*/}
 
   // Filter products based on category and search query
   useEffect(() => {
