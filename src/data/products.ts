@@ -1,3 +1,6 @@
+
+import { ProductProps } from "../components/ProductCard";
+
 export const allProducts: ProductProps[] = [
   {
     id: 'kefir',
