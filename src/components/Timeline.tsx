@@ -16,22 +16,26 @@ const TimelineEvent = ({ year, title, description, image }: TimelineEventProps) 
   return (
     <motion.div
       ref={ref}
-      className="relative bg-white rounded-xl shadow-lg p-6 md:p-8 border-l-4 border-primary/80 flex flex-col gap-4"
+      className="flex flex-col lg:flex-row items-center gap-10 py-12 border-t border-gray-200"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
     >
-      <div className="absolute -left-[30px] top-6 w-4 h-4 bg-primary rounded-full border-2 border-white shadow" />
-      <div className="text-sm text-primary font-semibold tracking-wider">{year}</div>
-      <h3 className="text-xl font-bold font-playfair">{title}</h3>
-      <p className="text-gray-600 leading-relaxed">{description}</p>
+      <div className="w-full lg:w-1/2 space-y-4 text-center lg:text-left">
+        <div className="inline-block px-4 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">
+          {year}
+        </div>
+        <h3 className="text-2xl font-playfair font-bold text-gray-800">{title}</h3>
+        <p className="text-gray-600 text-base leading-relaxed">{description}</p>
+      </div>
+
       {image && (
-        <div className="overflow-hidden rounded-md">
+        <div className="w-full lg:w-1/2 overflow-hidden rounded-xl">
           {!imageLoaded && <div className="aspect-video bg-gray-100 shimmer" />}
           <img
             src={image}
             alt={title}
-            className={`w-full object-cover rounded transition-transform duration-500 hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+            className={`w-full h-auto object-cover rounded-xl transition-transform duration-500 hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
             loading="lazy"
             decoding="async"
             onLoad={() => setImageLoaded(true)}
@@ -82,21 +86,21 @@ const Timeline = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-50" id="our-history">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-12">
+    <section className="py-24 bg-white" id="our-history">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20">
+        <div className="max-w-4xl mx-auto text-center mb-20">
           <span className="inline-block px-3 py-1 mb-4 bg-primary/10 text-primary text-sm font-medium rounded-full">
             Our Journey
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">
+          <h2 className="text-4xl md:text-5xl font-bold font-playfair mb-4">
             The Detelina Dairy Timeline
           </h2>
-          <p className="text-gray-600">
-            A walk through our milestones — from a family vision to a Cypriot household favorite.
+          <p className="text-gray-600 text-lg">
+            Every step shaped by family, Cyprus tradition, and real dairy culture.
           </p>
         </div>
 
-        <div className="relative space-y-12 max-w-2xl mx-auto">
+        <div className="space-y-16">
           {events.map((event, index) => (
             <TimelineEvent key={index} {...event} />
           ))}
