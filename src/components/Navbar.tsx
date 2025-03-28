@@ -44,7 +44,7 @@ const Navbar = () => {
          </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex space-x-8 text white">
             <NavLink to="/" active={location.pathname === '/'}>
               Home
             </NavLink>
