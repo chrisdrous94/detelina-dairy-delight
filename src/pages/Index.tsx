@@ -2,7 +2,6 @@
 import { useEffect } from 'react';
 import Hero from '../components/Hero';
 import About from '../components/About';
-import Newsletter from '../components/Newsletter';
 import Contact from '../components/Contact';
 import StoreLocator from '../components/StoreLocator';
 import Footer from '../components/Footer';
@@ -118,8 +117,7 @@ const Index = () => {
       {/* Store Locator */}
       <StoreLocator />
       
-      {/* Newsletter */}
-      <Newsletter />
+      
       
       {/* Contact */}
       <Contact />
@@ -127,7 +125,7 @@ const Index = () => {
       {/* Footer */}
       <Footer />
       
-      {/* Chatbot */}
+      
       
     </div>
   );

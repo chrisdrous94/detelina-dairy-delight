@@ -2,7 +2,6 @@
 import { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Newsletter from '../components/Newsletter';
 import Contact from '../components/Contact';
 import Timeline from '../components/Timeline';
 import { motion } from 'framer-motion';
@@ -148,7 +147,7 @@ const AboutPage = () => {
       
      
       
-      <Newsletter />
+    
       <Contact />
       <Footer />
       
