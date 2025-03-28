@@ -26,10 +26,10 @@ const AboutPage = () => {
               About Us
             </span>
             <h1 className="text-4xl md:text-5xl font-bold mb-6 font-playfair">
-              Our Eastern European Heritage
+            The Detelina Journey
             </h1>
             <p className="text-lg text-gray-700">
-              Detelina Dairy brings traditional Eastern European fermented dairy products to Cyprus, combining authentic recipes with modern production methods.
+            Rooted in Cyprus and powered by family tradition, our story is one of handcrafted dairy, natural fermentation, and unwavering dedication to quality.
             </p>
           </div>
         </div>
@@ -49,16 +49,16 @@ const AboutPage = () => {
                 Our Story
               </span>
               <h2 className="text-3xl font-bold mb-6 font-playfair">
-                From Eastern Europe to Cyprus
+              From Cyprus, With Cultured Tradition
               </h2>
               <p className="text-gray-700 mb-6">
-                Detelina Dairy was established in 2005 by a group of Eastern European dairy experts who recognized a need for authentic fermented dairy products in Cyprus. What began as a small operation has grown into a beloved brand known for quality and tradition.
+              Founded in 1995 by Costas Christou, Detelina Dairy began as a small family operation with a passion for naturally fermented dairy.
               </p>
               <p className="text-gray-700 mb-6">
-                Our founders brought with them generations of knowledge in dairy fermentation and a passion for the distinctive tastes of their homelands. Today, we continue to honor these traditions while embracing modern production standards.
+              With generations of fermentation know-how, Costas set out to craft healthy, probiotic-rich products using fresh local milk.
               </p>
               <p className="text-gray-700">
-                The name "Detelina" means "clover" in Bulgarian, symbolizing good fortune and our commitment to bringing the good fortune of health through natural dairy products to all our customers.
+                
               </p>
             </motion.div>
             
@@ -70,7 +70,7 @@ const AboutPage = () => {
               className="rounded-xl overflow-hidden shadow-lg"
             >
               <img 
-                src="/lovable-uploads/f83402e5-1e4f-4ac9-839d-9ef501da7c9f.png" 
+                src="/lovable-uploads/grandma-old-factory.jpg" 
                 alt="Detelina Dairy Factory" 
                 className="w-full h-auto"
               />
