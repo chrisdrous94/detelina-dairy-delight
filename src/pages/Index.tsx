@@ -85,9 +85,7 @@ const Index = () => {
               <h3 className="text-xl font-bold mb-3 font-playfair">
                 Digestive Health
               </h3>
-              <p className="text-gray-600">
-                Our fermented dairy products are rich in beneficial probiotics that support a healthy gut microbiome and improve digestive function.
-              </p>
+             
             </div>
             
             <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
@@ -99,9 +97,7 @@ const Index = () => {
               <h3 className="text-xl font-bold mb-3 font-playfair">
                 Immune Support
               </h3>
-              <p className="text-gray-600">
-                The natural fermentation process enhances immune function by promoting beneficial gut bacteria and providing essential nutrients.
-              </p>
+              
             </div>
             
             <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
@@ -113,9 +109,7 @@ const Index = () => {
               <h3 className="text-xl font-bold mb-3 font-playfair">
                 Nutrient-Rich
               </h3>
-              <p className="text-gray-600">
-                Our products are packed with essential nutrients including protein, calcium, vitamins B and K2, and are easier to digest than regular dairy.
-              </p>
+              
             </div>
           </div>
         </div>

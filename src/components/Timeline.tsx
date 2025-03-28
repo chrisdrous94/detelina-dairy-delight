@@ -6,50 +6,64 @@ interface TimelineEventProps {
   title: string;
   description: string;
   image?: string;
+  backgroundImage?: string;
 }
 
-const TimelineEvent = ({ year, title, description, image }: TimelineEventProps) => {
+const TimelineEvent = ({ year, title, description, image, backgroundImage }: TimelineEventProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [imageLoaded, setImageLoaded] = useState(!image);
 
   return (
-    <motion.div
-      ref={ref}
-      className="relative flex flex-col lg:flex-row items-center gap-10 py-12 border-t border-gray-200"
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, ease: 'easeOut' }}
-    >
-      {/* Animated dot */}
-      <motion.div
-        className="absolute left-1 top-12 w-4 h-4 rounded-full bg-primary z-10 border-2 border-white shadow-lg"
-        animate={isInView ? { scale: [0.7, 1.2, 1] } : { scale: 0.7 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-      />
-
-      <div className="w-full lg:w-1/2 space-y-4 text-center lg:text-left">
-        <div className="inline-block px-4 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">
-          {year}
-        </div>
-        <h3 className="text-2xl font-playfair font-bold text-gray-800">{title}</h3>
-        <p className="text-gray-600 text-base leading-relaxed">{description}</p>
-      </div>
-
-      {image && (
-        <div className="w-full lg:w-1/2 overflow-hidden rounded-xl">
-          {!imageLoaded && <div className="aspect-video bg-gray-100 shimmer" />}
-          <img
-            src={image}
-            alt={title}
-            className={`w-full h-auto object-cover rounded-xl transition-transform duration-500 hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-            loading="lazy"
-            decoding="async"
-            onLoad={() => setImageLoaded(true)}
-          />
-        </div>
+    <div ref={ref} className="relative overflow-hidden">
+      {/* Parallax background */}
+      {backgroundImage && (
+        <motion.div
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-0"
+          style={{ backgroundImage: `url(${backgroundImage})` }}
+          initial={{ y: 40, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 0.08 } : {}}
+          transition={{ duration: 1.2, ease: 'easeOut' }}
+        />
       )}
-    </motion.div>
+
+      {/* Event content */}
+      <motion.div
+        className="relative flex flex-col lg:flex-row items-center gap-10 py-12 border-t border-gray-200 z-10 backdrop-blur-md"
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+      >
+        {/* Animated dot */}
+        <motion.div
+          className="absolute left-1 top-12 w-4 h-4 rounded-full bg-primary z-20 border-2 border-white shadow-lg"
+          animate={isInView ? { scale: [0.7, 1.2, 1] } : { scale: 0.7 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        />
+
+        <div className="w-full lg:w-1/2 space-y-4 text-center lg:text-left">
+          <div className="inline-block px-4 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">
+            {year}
+          </div>
+          <h3 className="text-2xl font-playfair font-bold text-gray-800">{title}</h3>
+          <p className="text-gray-600 text-base leading-relaxed">{description}</p>
+        </div>
+
+        {image && (
+          <div className="w-full lg:w-1/2 overflow-hidden rounded-xl">
+            {!imageLoaded && <div className="aspect-video bg-gray-100 shimmer" />}
+            <img
+              src={image}
+              alt={title}
+              className={`w-full h-auto object-cover rounded-xl transition-transform duration-500 hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+              loading="lazy"
+              decoding="async"
+              onLoad={() => setImageLoaded(true)}
+            />
+          </div>
+        )}
+      </motion.div>
+    </div>
   );
 };
 
@@ -59,37 +73,43 @@ const Timeline = () => {
       year: '1995',
       title: 'Founding of Detelina Dairy',
       description: 'Detelina Dairy was founded by Costas Christou to bring naturally fermented dairy made with local Cyprus milk to life.',
-      image: '/lovable-uploads/grandma-old-factory.jpg'
+      image: '/lovable-uploads/grandma-old-factory.jpg',
+      backgroundImage: '/lovable-uploads/bg-1995.jpg'
     },
     {
       year: '1996',
       title: 'First Product Line Launch',
       description: 'Kefir and Tvorog enter the market — a milestone that introduced our unique flavors to Cypriot families.',
-      image: '/lovable-uploads/product-line-first.jpg'
+      image: '/lovable-uploads/product-line-first.jpg',
+      backgroundImage: '/lovable-uploads/bg-1996.jpg'
     },
     {
       year: '2004',
       title: 'Facility Expansion & EU Alignment',
       description: 'We expanded our factory in Limassol and aligned production with EU food safety regulations.',
-      image: '/lovable-uploads/new-factory-building.jpg'
+      image: '/lovable-uploads/new-factory-building.jpg',
+      backgroundImage: '/lovable-uploads/bg-2004.jpg'
     },
     {
       year: '2015',
       title: 'A Fresh New Look',
       description: 'Our packaging got a modern refresh — a new design that honored tradition and highlighted our quality.',
-      image: '/lovable-uploads/product-line-first.jpg'
+      image: '/lovable-uploads/product-line-first.jpg',
+      backgroundImage: '/lovable-uploads/bg-2015.jpg'
     },
     {
       year: '2024',
       title: 'Tvorog, Now in 250g',
       description: 'Our signature cottage cheese is now available in a smaller, more convenient size for every household.',
-    image: '/lovable-uploads/tvorog-250g.png'
+      image: '/lovable-uploads/tvorog-250g.png',
+      backgroundImage: '/lovable-uploads/bg-2024.jpg'
     },
     {
       year: '2025',
       title: 'Launch of Pro² Protein Line',
       description: 'We introduced our protein-enriched kefir line, blending high performance with natural fermentation.',
-      image: '/lovable-uploads/pro²-protein-kefir-black-font.jpg'
+      image: '/lovable-uploads/pro²-protein-kefir-black-font.jpg',
+      backgroundImage: '/lovable-uploads/bg-2025.jpg'
     }
   ];
 
