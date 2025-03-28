@@ -1,142 +1,83 @@
-
 import { useEffect, useRef, useState } from 'react';
-import { motion, useInView, useAnimation } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 
 interface TimelineEventProps {
   year: string;
   title: string;
   description: string;
   image?: string;
-  side: 'left' | 'right';
 }
 
-const TimelineEvent = ({ year, title, description, image, side }: TimelineEventProps) => {
+const TimelineEvent = ({ year, title, description, image }: TimelineEventProps) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.5 });
-  const controls = useAnimation();
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [imageLoaded, setImageLoaded] = useState(!image);
 
-  useEffect(() => {
-    if (isInView) {
-      controls.start('visible');
-    }
-  }, [isInView, controls]);
-
-  const contentVariants = {
-    hidden: { 
-      opacity: 0, 
-      x: side === 'left' ? -50 : 50 
-    },
-    visible: { 
-      opacity: 1, 
-      x: 0,
-      transition: { 
-        duration: 0.8, 
-        ease: [0.16, 1, 0.3, 1] 
-      }
-    }
-  };
-
   return (
-    <div ref={ref} className={`flex flex-col md:flex-row items-center md:items-start gap-4 w-full my-8 ${side === 'right' ? 'md:flex-row-reverse' : ''}`}>
-      {/* Year display */}
-      <div className="w-full md:w-1/12 md:p-4 flex justify-center md:justify-end">
-        <motion.div 
-          className="text-3xl font-bold text-primary flex items-center justify-center"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.5 }}
-        >
-          {year}
-        </motion.div>
-      </div>
-      
-      {/* Line */}
-      <div className="hidden md:flex items-center justify-center">
-        <div className="w-px h-full bg-gray-300 relative">
-          <motion.div 
-            className="absolute w-3 h-3 rounded-full bg-primary top-0 left-1/2 transform -translate-x-1/2"
-            initial={{ scale: 0 }}
-            animate={isInView ? { scale: 1 } : { scale: 0 }}
-            transition={{ delay: 0.2, duration: 0.4 }}
+    <motion.div
+      ref={ref}
+      className="relative bg-white rounded-xl shadow-lg p-6 md:p-8 border-l-4 border-primary/80 flex flex-col gap-4"
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+    >
+      <div className="absolute -left-[30px] top-6 w-4 h-4 bg-primary rounded-full border-2 border-white shadow" />
+      <div className="text-sm text-primary font-semibold tracking-wider">{year}</div>
+      <h3 className="text-xl font-bold font-playfair">{title}</h3>
+      <p className="text-gray-600 leading-relaxed">{description}</p>
+      {image && (
+        <div className="overflow-hidden rounded-md">
+          {!imageLoaded && <div className="aspect-video bg-gray-100 shimmer" />}
+          <img
+            src={image}
+            alt={title}
+            className={`w-full object-cover rounded transition-transform duration-500 hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+            loading="lazy"
+            decoding="async"
+            onLoad={() => setImageLoaded(true)}
           />
         </div>
-      </div>
-      
-      {/* Content */}
-      <motion.div 
-        className={`w-full md:w-5/12 p-4 bg-white rounded-xl shadow-sm ${side === 'left' ? 'md:ml-8' : 'md:mr-8'}`}
-        variants={contentVariants}
-        initial="hidden"
-        animate={controls}
-      >
-        <h3 className="text-xl font-bold mb-2 font-playfair">{title}</h3>
-        <p className="text-gray-600 mb-4">{description}</p>
-        {image && (
-          <div className="overflow-hidden rounded-lg bg-gray-100">
-            {!imageLoaded && (
-              <div className="aspect-video bg-gray-100 shimmer" />
-            )}
-            <img 
-              src={image} 
-              alt={title} 
-              className={`w-full h-auto object-cover transition-transform hover:scale-105 duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-              loading="lazy"
-              decoding="async"
-              onLoad={() => setImageLoaded(true)}
-            />
-          </div>
-        )}
-      </motion.div>
-    </div>
+      )}
+    </motion.div>
   );
 };
 
 const Timeline = () => {
-  const timelineRef = useRef(null);
-  const isInView = useInView(timelineRef, { once: false, amount: 0.1 });
-
   const events: TimelineEventProps[] = [
     {
       year: '1995',
       title: 'Founding of Detelina Dairy',
-      description: 'Detelina Dairy was established in Cyprus by Eastern European dairy experts with a vision to bring authentic fermented dairy products to the local market.',
-      image: 'chrisdrous94/detelina-dairy-delight/public/lovable-uploads/grandma old factory.jpg',
-      side: 'left'
+      description: 'Detelina Dairy was founded by Costas Christou to bring naturally fermented dairy made with local Cyprus milk to life.',
+      image: '/lovable-uploads/grandma-old-factory.jpg'
     },
     {
       year: '1996',
       title: 'First Product Line Launch',
-      description: 'Launched our first line of products featuring Kefir and Tvorog, introducing Cypriots to traditional Eastern European dairy delicacies.',
-      image: '/lovable-uploads/product line first.jpg',
-      side: 'right'
+      description: 'Kefir and Tvorog enter the market — a milestone that introduced our unique flavors to Cypriot families.',
+      image: '/lovable-uploads/product-line-first.jpg'
     },
     {
       year: '2004',
-      title: 'Expansion of Production Facility and alignment with EU regulations',
-      description: 'Expanded our production facility in Limassol to meet growing demand, increasing our capacity and introducing new product lines.',
-      image: '/lovable-uploads/new factory building.jpg',
-      side: 'left'
+      title: 'Facility Expansion & EU Alignment',
+      description: 'We expanded our factory in Limassol and aligned production with EU food safety regulations.',
+      image: '/lovable-uploads/new-factory-building.jpg'
     },
     {
       year: '2015',
       title: 'A Fresh New Look',
-      description: 'Our packaging was thoughtfully updated with elegant, professional labels — a reflection of our enduring commitment to quality and tradition in every product we offer.',
-      image: '/lovable-uploads/kefir full light and strawberry together.jpg',
-      side: 'right'
+      description: 'Our packaging got a modern refresh — a new design that honored tradition and highlighted our quality.',
+      image: '/lovable-uploads/kefir-full-light-and-strawberry-together.jpg'
     },
     {
       year: '2024',
-      title: 'A Beloved Classic, Now in a New Size',
-      description: 'Our best-selling tvorog (farmer cheese) became available in a convenient 250g package — offering the same authentic taste, now in a size that suits every home.',
-      side: 'left'
+      title: 'Tvorog, Now in 250g',
+      description: 'Our signature cottage cheese is now available in a smaller, more convenient size for every household.'
     },
     {
       year: '2025',
-      title: 'Introduction of Pro² Protein Line',
-      description: 'Developed and launched our innovative Pro² protein kefir line, targeting fitness enthusiasts and health-conscious consumers.',
-      image: '/lovable-uploads/985b2576-dab1-4283-8c2e-923d2a1b6e3a.png',
-      side: 'right'
+      title: 'Launch of Pro² Protein Line',
+      description: 'We introduced our protein-enriched kefir line, blending high performance with natural fermentation.',
+      image: '/lovable-uploads/protein-kefir-pro2.png'
     }
   ];
 
@@ -151,30 +92,14 @@ const Timeline = () => {
             The Detelina Dairy Timeline
           </h2>
           <p className="text-gray-600">
-            Tracing our path from humble beginnings to becoming Cyprus' leading Eastern European dairy producer.
+            A walk through our milestones — from a family vision to a Cypriot household favorite.
           </p>
         </div>
-        
-        <div 
-          ref={timelineRef}
-          className="relative pb-12"
-        >
-          {/* Vertical timeline line for desktop */}
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gray-300 top-0">
-            <motion.div 
-              className="absolute top-0 bottom-0 left-0 right-0 bg-primary"
-              initial={{ scaleY: 0, originY: 0 }}
-              animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-            />
-          </div>
-          
-          {/* Events */}
-          <div className="space-y-12">
-            {events.map((event, index) => (
-              <TimelineEvent key={index} {...event} />
-            ))}
-          </div>
+
+        <div className="relative space-y-12 max-w-2xl mx-auto">
+          {events.map((event, index) => (
+            <TimelineEvent key={index} {...event} />
+          ))}
         </div>
       </div>
     </section>
