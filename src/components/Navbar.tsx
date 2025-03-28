@@ -76,7 +76,7 @@ const Navbar = () => {
           isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         } md:hidden`}
       >
-        <div className="flex flex-col h-full pt-20 p-8">
+        <div className="flex flex-col h-full pt-20 p-8 text-white">
           <MobileNavLink to="/" active={location.pathname === '/'}>
             Home
           </MobileNavLink>
