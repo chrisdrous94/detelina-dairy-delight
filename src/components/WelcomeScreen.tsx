@@ -45,6 +45,10 @@ const WelcomeScreen = ({ onFinish }: { onFinish: () => void }) => {
   {dropCount < 2 && (
     <>
       {/* Milk Drop */}
+      <AnimatePresence>
+  {dropCount < 2 && (
+    <>
+      {/* Milk drop */}
       <motion.svg
         key={`drop-${dropCount}`}
         className="absolute top-0 left-1/2 -translate-x-1/2"
@@ -64,24 +68,38 @@ const WelcomeScreen = ({ onFinish }: { onFinish: () => void }) => {
         />
       </motion.svg>
 
-      {/* Ripple Effect */}
+      {/* Elegant ripple splash */}
       <motion.div
         key={`ripple-${dropCount}`}
-        className="absolute left-1/2 -translate-x-1/2 rounded-full border border-white"
-        style={{ top: '180px', width: '12px', height: '12px' }}
-        initial={{ scale: 0.5, opacity: 0.5 }}
-        animate={{ scale: 3, opacity: 0 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 1.2, ease: 'easeOut' }}
+        className="absolute top-[185px] left-1/2 -translate-x-1/2 rounded-full pointer-events-none"
+        initial={{
+          scale: 0.2,
+          opacity: 0.4,
+          filter: 'blur(0px)',
+        }}
+        animate={{
+          scale: 3,
+          opacity: 0,
+          filter: 'blur(4px)',
+        }}
+        transition={{
+          duration: 1,
+          ease: 'easeOut',
+          delay: 1,
+        }}
+        style={{
+          width: '50px',
+          height: '50px',
+          backgroundColor: 'rgba(255, 255, 255, 0.15)',
+          zIndex: 3,
+        }}
       />
     </>
   )}
 </AnimatePresence>
 
 
-
-
-      {/* Logo */}
+     {/* Logo */}
       <motion.img
         src="/lovable-uploads/DETELINA LOGO 2025 white-02.png"
         alt="Detelina Logo"
