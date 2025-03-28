@@ -1,0 +1,73 @@
+.milk-drop-wrapper {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 200px;
+    width: 200px;
+    z-index: 10;
+  }
+  
+  .milk-drop-svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .drop {
+    fill: white;
+    animation: drop-fall 2s ease-in-out infinite;
+  }
+  
+  .splash {
+    fill: white;
+    opacity: 0;
+  }
+  
+  .splash1 {
+    animation: splash-pop 2s ease-out infinite;
+    animation-delay: 1.2s;
+  }
+  
+  .splash2 {
+    animation: splash-pop 2s ease-out infinite;
+    animation-delay: 1.3s;
+  }
+  
+  .splash3 {
+    animation: splash-pop 2s ease-out infinite;
+    animation-delay: 1.4s;
+  }
+  
+  @keyframes drop-fall {
+    0% {
+      cy: 30;
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    60% {
+      cy: 160;
+      opacity: 1;
+    }
+    100% {
+      cy: 160;
+      opacity: 0;
+    }
+  }
+  
+  @keyframes splash-pop {
+    0%, 50% {
+      r: 0;
+      opacity: 0;
+    }
+    60% {
+      r: 5;
+      opacity: 1;
+    }
+    100% {
+      r: 0;
+      opacity: 0;
+    }
+  }
+  
