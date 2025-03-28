@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
-import './milkDrop.css';
+import './milkdrop.css';
 
 const WelcomeScreen = ({ onFinish }: { onFinish: () => void }) => {
   const [fadingOut, setFadingOut] = useState(false);
