@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -45,7 +44,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-28 z-0">
       {/* Background image with parallax effect */}
       <div className="absolute inset-0 z-0">
         {heroImages.map((img, index) => (

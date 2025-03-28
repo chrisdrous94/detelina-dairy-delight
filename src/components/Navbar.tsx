@@ -13,8 +13,10 @@ const Navbar = () => {
 
   return (
     <header
-      className={`relative z-50 transition-all duration-300 ${
-        isHome ? 'bg-transparent' : 'bg-white shadow-sm'
+      className={`transition-all duration-300 ${
+        isHome
+          ? 'absolute top-0 left-0 right-0 z-50 bg-transparent'
+          : 'relative z-50 bg-white shadow-sm'
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
