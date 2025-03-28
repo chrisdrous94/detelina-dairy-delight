@@ -7,7 +7,7 @@ import { ProductProps } from './ProductCard';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import Newsletter from './Newsletter';
+
 
 
 const ProductDetail = () => {
@@ -308,7 +308,7 @@ const ProductDetail = () => {
         </div>
       </main>
       
-      <Newsletter />
+      
       <Footer />
       
     </div>
