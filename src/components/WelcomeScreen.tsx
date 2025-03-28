@@ -42,18 +42,19 @@ const WelcomeScreen = ({ onFinish }: { onFinish: () => void }) => {
 
       {/* Milk drop animation */}
       <AnimatePresence>
-        {dropCount < 2 && (
-          <motion.div
-            key={`drop-${dropCount}`}
-            className="absolute top-0 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rounded-full"
-            initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 180, opacity: 1 }}
-            exit={{ opacity: 0, scale: 0.5 }}
-            transition={{ duration: 1, ease: 'easeInOut' }}
-            style={{ zIndex: 5 }}
-          />
-        )}
-      </AnimatePresence>
+  {dropCount < 2 && (
+    <motion.div
+      key={`drop-${dropCount}`}
+      className="absolute top-0 left-1/2 transform -translate-x-1/2 drop-shape"
+      initial={{ y: -50, opacity: 0 }}
+      animate={{ y: 180, opacity: 1 }}
+      exit={{ opacity: 0, scale: 0.5 }}
+      transition={{ duration: 1, ease: 'easeInOut' }}
+      style={{ zIndex: 5 }}
+    />
+  )}
+</AnimatePresence>
+
 
       {/* Logo */}
       <motion.img

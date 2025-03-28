@@ -40,3 +40,12 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Milk drop shape */
+.drop-shape {
+  width: 20px;
+  height: 28px;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+  border-radius: 50% 50% 60% 60% / 60% 60% 40% 40%;
+}
