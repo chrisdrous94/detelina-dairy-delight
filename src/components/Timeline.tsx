@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 interface TimelineEvent {
@@ -47,13 +47,15 @@ const events: TimelineEvent[] = [
   },
 ]
 
-export default function ElegantTimelineCarousel() {
+export default function ScrollableTimeline() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const activeEvent = events[activeIndex]
+
+  // Scroll animation settings
+  const scrollRef = useRef(null)
 
   return (
-    <section className="bg-white py-24 px-6 md:px-12 lg:px-20" id="our-history">
-      <div className="max-w-4xl mx-auto text-center mb-16">
+    <section className="relative py-24 bg-white min-h-[200vh]" ref={scrollRef}>
+      <div className="max-w-5xl mx-auto text-center mb-16">
         <span className="inline-block px-3 py-1 mb-4 bg-detelina-green/10 text-detelina-green text-sm font-medium rounded-full">
           Our Journey
         </span>
@@ -65,55 +67,20 @@ export default function ElegantTimelineCarousel() {
         </p>
       </div>
 
-      <div className="max-w-5xl mx-auto space-y-10">
-        {/* Main Card */}
-        <div className="relative min-h-[400px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+      <div className="relative z-10">
+        <div className="space-y-16">
+          {events.map((event, index) => (
+            <div
+              key={index}
+              className="relative flex flex-col md:flex-row items-center gap-10 py-16"
+              style={{
+                transform: `translateY(${activeIndex === index ? '0' : '-100px'})`,
+                opacity: activeIndex === index ? 1 : 0.5,
+                transition: 'all 0.5s ease-out',
+              }}
             >
               <div className="space-y-4 text-center md:text-left">
                 <div className="inline-block px-4 py-1 bg-detelina-green/10 text-detelina-green text-xs font-medium rounded-full">
-                  {activeEvent.year}
+                  {event.year}
                 </div>
-                <h3 className="text-2xl font-playfair font-bold text-gray-800">{activeEvent.title}</h3>
-                <p className="text-gray-600 text-base leading-relaxed">{activeEvent.description}</p>
-              </div>
-              {activeEvent.image && (
-                <div className="overflow-hidden rounded-xl">
-                  <img
-                    src={activeEvent.image}
-                    alt={activeEvent.title}
-                    className="w-full h-auto object-cover rounded-xl transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* Year Slider */}
-        <div className="flex justify-center flex-wrap gap-3 pt-4">
-          {events.map((event, index) => (
-            <button
-              key={event.year}
-              onClick={() => setActiveIndex(index)}
-              className={`text-sm px-4 py-1 rounded-full border transition ${
-                index === activeIndex
-                  ? 'bg-detelina-green text-white border-detelina-green'
-                  : 'bg-white text-gray-700 border-gray-300 hover:bg-detelina-green hover:text-white'
-              }`}
-            >
-              {event.year}
-            </button>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
+                <h3 className="text-2xl
