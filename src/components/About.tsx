@@ -4,13 +4,13 @@ import { ArrowRight } from 'lucide-react';
 
 const About = () => {
   return (
-    <section className="py-20 bg-detelina-cream">
+    <section className="py-20 bg-black text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Image with dark gradient overlay */}
           <div className="relative">
             {/* Dark gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-transparent z-10 rounded-2xl" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent z-10 rounded-2xl" />
 
             {/* Main image */}
             <div className="rounded-2xl overflow-hidden shadow-xl relative z-0">
@@ -36,18 +36,18 @@ const About = () => {
             <span className="inline-block px-3 py-1 mb-4 bg-primary/10 text-primary text-sm font-medium rounded-full">
               Our Story
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 font-playfair">
-              Authenticity & Tradition Since 2007
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 font-playfair text-white">
+              Authenticity & Tradition Since 1995
             </h2>
-            <div className="space-y-4 text-gray-700">
+            <div className="space-y-4 text-gray-300">
               <p>
-                Founded in 1995, Detelina Dairy brings authentic Eastern European dairy traditions to Cyprus. Our small-batch production preserves the natural flavors and health benefits that have been cherished for generations.
+                Founded in 1995, Detelina Dairy began with a vision to bring naturally fermented dairy to Cyprus.
               </p>
               <p>
-                We're passionate about crafting fermented dairy products using traditional methods and recipes that have stood the test of time. Every product we make is a testament to our commitment to quality, taste, and nutritional value.
+                Our small-batch production blends family tradition with fresh, local milk to create unmatched quality.
               </p>
               <p>
-                Our team of dairy specialists ensure that each batch meets our strict standards, delivering the authentic flavors of Eastern Europe with the freshness you expect from local production.
+                From kefir to cottage cheese, every product reflects our commitment to real ingredients and great taste.
               </p>
             </div>
             <div className="mt-8">
