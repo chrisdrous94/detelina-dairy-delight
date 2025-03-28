@@ -18,27 +18,207 @@ const initialMessages: Message[] = [
 ];
 
 // Predefined responses based on keywords
-const predefinedResponses: Record<string, string> = {
-  'hello': 'Hello! How can I help you today?',
-  'hi': 'Hi there! What would you like to know about Detelina Dairy products?',
-  'product': 'Our main products include Kefir, Tvorog (fresh cheese), Smetana (sour cream), Ryazhenka (baked milk), and our Pro² Protein Kefir line. Which one would you like to learn more about?',
-  'kefir': 'Kefir is a fermented milk drink rich in probiotics. We offer classic Kefir, Light Kefir with reduced fat, flavored options like Strawberry, and our Pro² Protein Kefir for fitness enthusiasts.',
-  'tvorog': 'Tvorog is a fresh cottage cheese popular in Eastern European cuisine. We offer it in 9% and 5% fat varieties. It\'s perfect for breakfast dishes, cheesecakes, and can be enjoyed with fruits and honey.',
-  'smetana': 'Smetana is a thick, rich sour cream that adds depth to both savory and sweet dishes. It\'s essential for authentic borsch, blini, or as a topping for traditional Eastern European dishes.',
-  'ryazhenka': 'Ryazhenka is a baked fermented milk product with a natural caramelized flavor and a velvety texture. It has a gentle effect on the digestive system and is often enjoyed as a calming evening drink.',
-  'protein': 'Our Pro² Protein Kefir contains 28g of protein per serving and comes in delicious flavors like Banana+Vanilla and Cherry. It\'s perfect for fitness enthusiasts and active lifestyles.',
-  'where': 'You can find Detelina Dairy products in major supermarkets across Cyprus, including Alpha-Mega, Metro, and Papantoniou. We also sell directly from our factory store in Limassol.',
-  'benefit': 'Our fermented dairy products are rich in probiotics that support gut health, boost immunity, and improve digestion. They\'re also excellent sources of protein, calcium, and essential vitamins.',
-  'price': 'Prices vary by product and size. Our standard Kefir bottles start around €2.20, while specialty products like our Pro² Protein Kefir are priced from €3.30. For current pricing, please check with your local retailer.',
-  'address': 'Our factory is located at Akademias 2, Ypsonas, Limassol, Cyprus.',
-  'contact': 'You can contact us at +357 25 715450 or email info@detelina-dairy.com. Our customer service is available Monday to Friday, 8:00 AM to 5:00 PM.',
-  'probiotics': 'Probiotics are beneficial bacteria that support gut health. Our fermented dairy products are natural sources of these helpful microorganisms, contributing to better digestion and a stronger immune system.',
-  'allergies': 'Our products contain milk. If you have lactose intolerance, our Kefir might be easier to digest as the fermentation process reduces lactose content, but please consult with your healthcare provider.',
-  'recipe': 'We have many traditional recipes using our products! Try making syrniki (cheese pancakes) with our Tvorog, or use Smetana in borscht. Visit our website\'s recipe section for detailed instructions.',
-  'thank': 'You\'re welcome! Is there anything else I can help you with?',
-  'thanks': 'You\'re welcome! Is there anything else I can help you with?',
-  'bye': 'Thank you for chatting with us! Feel free to return anytime you have questions about Detelina Dairy products.'
-};
+const responseMap: { keywords: string[]; replies: string[] }[] = [
+  // 1. Greetings & Small Talk
+  {
+    keywords: ['hi', 'hello', 'hey', 'greetings', 'good morning', 'good afternoon'],
+    replies: [
+      'Hi there! 👋 How can I help you today?',
+      'Hello! Need help with our products?',
+      'Hey! I’m here for all things Detelina.',
+      'Good to see you! Ask me anything about our dairy range.'
+    ]
+  },
+  {
+    keywords: ['how are you', 'what\'s up', 'how’s it going'],
+    replies: [
+      'I’m feeling fresh — just like our kefir! How can I help you today?',
+      'Doing great! Ready to chat dairy. 😊',
+      'Better than ever — powered by probiotics!'
+    ]
+  },
+
+  // 2. Kefir
+  {
+    keywords: ['kefir', 'fermented milk', 'probiotic drink'],
+    replies: [
+      'Our kefir is made with fresh Cyprus milk and live cultures — tangy, creamy, and great for your gut!',
+      'We offer classic, light, strawberry, and protein-packed kefir. Want help choosing one?',
+      'Kefir is full of probiotics and low in lactose. It’s like a super drink in a bottle!'
+    ]
+  },
+  {
+    keywords: ['kefir light', 'light kefir'],
+    replies: [
+      'Kefir Light has all the probiotic benefits with less fat and fewer calories — ideal for everyday sipping!',
+      'A lighter option, same Detelina flavor. Great post-meal drink!'
+    ]
+  },
+  {
+    keywords: ['kefir strawberry', 'flavored kefir', 'fruit kefir'],
+    replies: [
+      'Our Strawberry Kefir is kid-friendly, fruity, and packed with natural probiotics.',
+      'Sweet and smooth — Strawberry Kefir is a favorite among all ages!'
+    ]
+  },
+  {
+    keywords: ['family pack', 'kefir 2l', 'bulk kefir'],
+    replies: [
+      'The Kefir Family Pack (2L) is perfect for households that drink kefir daily — it’s economical and delicious.',
+      'Love kefir? Our 2L Family Pack has your fridge covered!'
+    ]
+  },
+
+  // 3. Protein Line
+  {
+    keywords: ['protein', 'pro2', 'fitness', 'workout', 'gym'],
+    replies: [
+      '💪 Our Pro² Protein Kefir packs 28g of protein per bottle — perfect for muscle recovery and gut health!',
+      'Made for active lifestyles — Pro² combines performance with live cultures.',
+      'Vanilla-Banana or Cherry? Our Pro² line brings flavor and function together.'
+    ]
+  },
+
+  // 4. Tvorog
+  {
+    keywords: ['tvorog', 'cottage cheese', 'fresh cheese', 'farmer cheese'],
+    replies: [
+      'Tvorog is our fresh cheese — creamy, slightly tangy, and super nutritious!',
+      'We offer 9% (450g) and 5% (250g) Tvorog — great with fruit, honey, or in baking.',
+      'Try making syrniki with our Tvorog — it’s a traditional treat!'
+    ]
+  },
+
+  // 5. Smetana
+  {
+    keywords: ['smetana', 'sour cream'],
+    replies: [
+      'Smetana is our cultured sour cream — rich, tangy, and amazing on soups or blinis.',
+      'Use Smetana in cooking or as a topping — it adds creaminess and probiotics to every dish!'
+    ]
+  },
+
+  // 6. Ryazhenka
+  {
+    keywords: ['ryazhenka', 'baked milk'],
+    replies: [
+      'Ryazhenka is our caramelized baked milk — a silky, naturally sweet dairy drink.',
+      'It’s perfect warm or cold — and gentle on the stomach.'
+    ]
+  },
+
+  // 7. Where to Buy
+  {
+    keywords: ['where', 'buy', 'find', 'supermarket', 'store'],
+    replies: [
+      'You’ll find us in most supermarkets across Cyprus: AlphaMega, Papantoniou, Metro and more!',
+      'Our products are sold island-wide — and at our factory shop in Limassol.',
+      'Need something special? Message us and we’ll point you to the nearest stockist.'
+    ]
+  },
+
+  // 8. Benefits
+  {
+    keywords: ['probiotic', 'benefit', 'healthy', 'good for', 'health'],
+    replies: [
+      'Our products are loaded with live cultures that improve digestion, immunity, and gut health.',
+      'Fermented dairy = better gut, stronger you. 💪',
+      'Kefir and Tvorog are high in protein and calcium — great for bones, muscles, and mood!'
+    ]
+  },
+
+  // 9. Ingredients / Allergies
+  {
+    keywords: ['lactose', 'intolerant', 'allergy', 'ingredient'],
+    replies: [
+      'All our products contain milk. But fermented options like kefir are low in lactose and easier to digest.',
+      'If you’re lactose-sensitive, start with kefir — many find it gentle on their system.',
+      'Always check labels if you have allergies — or message us for details!'
+    ]
+  },
+
+  // 10. Expiry / Storage
+  {
+    keywords: ['store', 'expire', 'expiry', 'shelf life', 'how long'],
+    replies: [
+      'Our products are refrigerated and stay fresh for up to 3 weeks. Check each label for best before date.',
+      'Keep it cold and closed — that’s the key to long shelf life!',
+      'If it smells fizzy and fresh, it’s probably still perfect!'
+    ]
+  },
+
+  // 11. Recipes & Usage
+  {
+    keywords: ['recipe', 'cook', 'how to use', 'serve', 'eat'],
+    replies: [
+      'Try Tvorog in pancakes (syrniki), Smetana in soups, or drink kefir with breakfast!',
+      'We’ve got a recipe section coming soon! Need one now?',
+      'Want to make a probiotic smoothie? Just blend our kefir with banana and cinnamon!'
+    ]
+  },
+
+  // 12. Kids / Family
+  {
+    keywords: ['children', 'kids', 'baby'],
+    replies: [
+      'Our Strawberry Kefir is a hit with kids — smooth, fruity, and natural.',
+      'Fermented dairy is a great option for growing kids — consult your pediatrician if unsure.'
+    ]
+  },
+
+  // 13. Contact & Location
+  {
+    keywords: ['contact', 'email', 'phone', 'reach', 'support'],
+    replies: [
+      'You can reach us at 📞 +357 25 715450 or ✉️ info@detelina-dairy.com',
+      'Customer support is open Mon–Fri, 8AM–5PM — we’re here for you!'
+    ]
+  },
+  {
+    keywords: ['location', 'address', 'factory', 'limassol'],
+    replies: [
+      'Visit our factory shop at Akademias 2, Ypsonas, Limassol.',
+      'Yes, we have a physical store! Come by for fresh products.'
+    ]
+  },
+
+  // 14. Story & Brand
+  {
+    keywords: ['history', 'story', 'brand', 'who are you'],
+    replies: [
+      'Detelina was founded in 1995 by Costas Christou — inspired by traditional fermentation and local milk.',
+      'We’re a family-run dairy in Cyprus, bringing Eastern European flavors to local tables.'
+    ]
+  },
+
+  // 15. Thanks & Farewell
+  {
+    keywords: ['thank', 'thanks', 'thank you'],
+    replies: [
+      'You’re very welcome! 😊',
+      'Anytime — feel free to ask me more.',
+      'Glad I could help!'
+    ]
+  },
+  {
+    keywords: ['bye', 'goodbye', 'see you', 'later'],
+    replies: [
+      'Thanks for chatting — come back anytime! 👋',
+      'Take care! I’ll be here if you need help.'
+    ]
+  },
+
+  // 16. Default fallback
+  {
+    keywords: [],
+    replies: [
+      'I’m not sure how to answer that, but I can help with product info, store locations, or nutrition!',
+      'Try asking about kefir, Tvorog, prices, or where to find us!',
+      'Need help with anything specific? I’ve got answers on all things dairy. 🧀🥛'
+    ]
+  }
+];
+
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,14 +236,14 @@ const Chatbot = () => {
   }, [messages]);
 
   const getResponse = (userMessage: string): string => {
-    const lowerCaseMessage = userMessage.toLowerCase();
-    
-    // Check for keyword matches
-    for (const keyword in predefinedResponses) {
-      if (lowerCaseMessage.includes(keyword)) {
-        return predefinedResponses[keyword];
+    const input = userMessage.toLowerCase();
+  
+    for (const entry of responseMap) {
+      if (entry.keywords.length === 0 || entry.keywords.some(keyword => input.includes(keyword))) {
+        return entry.replies[Math.floor(Math.random() * entry.replies.length)];
       }
     }
+  
     
     // Default response
     return "I'm not sure how to respond to that. Would you like to know about our products, where to find them, or nutritional information?";
@@ -210,42 +390,43 @@ const Chatbot = () => {
       
       {/* CSS for typing indicator */}
       <style jsx>{`
-        .dot-typing {
-          position: relative;
-          left: -9999px;
-          width: 6px;
-          height: 6px;
-          border-radius: 5px;
-          background-color: #9880ff;
-          color: #9880ff;
-          box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
-          animation: dotTyping 1.5s infinite linear;
-        }
+  .dot-typing {
+    position: relative;
+    left: -9999px;
+    width: 6px;
+    height: 6px;
+    border-radius: 5px;
+    background-color: #9880ff;
+    color: #9880ff;
+    box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
+    animation: dotTyping 1.5s infinite linear;
+  }
 
-        @keyframes dotTyping {
-          0% {
-            box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
-          }
-          16.667% {
-            box-shadow: 9984px -10px 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
-          }
-          33.333% {
-            box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
-          }
-          50% {
-            box-shadow: 9984px 0 0 0 #9880ff, 9994px -10px 0 0 #9880ff, 10004px 0 0 0 #9880ff;
-          }
-          66.667% {
-            box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
-          }
-          83.333% {
-            box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px -10px 0 0 #9880ff;
-          }
-          100% {
-            box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
-          }
-        }
-      `}</style>
+  @keyframes dotTyping {
+    0% {
+      box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
+    }
+    16.667% {
+      box-shadow: 9984px -10px 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
+    }
+    33.333% {
+      box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
+    }
+    50% {
+      box-shadow: 9984px 0 0 0 #9880ff, 9994px -10px 0 0 #9880ff, 10004px 0 0 0 #9880ff;
+    }
+    66.667% {
+      box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
+    }
+    83.333% {
+      box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px -10px 0 0 #9880ff;
+    }
+    100% {
+      box-shadow: 9984px 0 0 0 #9880ff, 9994px 0 0 0 #9880ff, 10004px 0 0 0 #9880ff;
+    }
+  }
+`}</style>
+
     </>
   );
 };
