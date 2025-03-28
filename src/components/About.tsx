@@ -1,22 +1,28 @@
-
-import { ArrowRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 const About = () => {
   return (
     <section className="py-20 bg-detelina-cream">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Image */}
+          {/* Image with dark gradient overlay */}
           <div className="relative">
-            <div className="rounded-2xl overflow-hidden shadow-xl">
+            {/* Dark gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-transparent z-10 rounded-2xl" />
+
+            {/* Main image */}
+            <div className="rounded-2xl overflow-hidden shadow-xl relative z-0">
               <img 
                 src="/lovable-uploads/313fea23-3c0a-4bed-8169-f67c5deb519e.png" 
                 alt="Detelina Dairy Products" 
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-white p-4 rounded-xl shadow-lg hidden md:flex items-center justify-center">
+
+            {/* Floating logo */}
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-white p-4 rounded-xl shadow-lg hidden md:flex items-center justify-center z-20">
               <img 
                 src="/lovable-uploads/8040c74b-81ed-41c3-a04d-71ec03b50bfa.png" 
                 alt="Detelina Logo" 
