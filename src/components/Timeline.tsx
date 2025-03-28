@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll } from 'framer-motion';
 
 interface TimelineEventProps {
   year: string;
@@ -85,8 +85,30 @@ const Timeline = () => {
     }
   ];
 
+  const timelineRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: timelineRef });
+
   return (
-    <section className="py-24 bg-white" id="our-history">
+    <section className="relative py-24 bg-white" id="our-history" ref={timelineRef}>
+      {/* Scroll progress bar */}
+      <motion.div
+        className="fixed top-0 left-0 h-1 bg-primary z-50"
+        style={{ width: scrollYProgress ? `${scrollYProgress.get() * 100}%` : '0%' }}
+      />
+
+      {/* Floating year nav */}
+      <div className="hidden lg:flex fixed top-1/2 right-6 -translate-y-1/2 flex-col gap-2 z-40">
+        {events.map((event, index) => (
+          <a
+            key={index}
+            href={`#event-${index}`}
+            className="text-xs px-3 py-1 bg-white border border-gray-300 rounded-full hover:bg-primary hover:text-white transition"
+          >
+            {event.year}
+          </a>
+        ))}
+      </div>
+
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <div className="max-w-4xl mx-auto text-center mb-20">
           <span className="inline-block px-3 py-1 mb-4 bg-primary/10 text-primary text-sm font-medium rounded-full">
@@ -102,7 +124,9 @@ const Timeline = () => {
 
         <div className="space-y-16">
           {events.map((event, index) => (
-            <TimelineEvent key={index} {...event} />
+            <div key={index} id={`event-${index}`}>
+              <TimelineEvent {...event} />
+            </div>
           ))}
         </div>
       </div>
