@@ -13,55 +13,49 @@ const Navbar = () => {
 
   return (
     <header
-      className={`relative z-50 ${
-        isHome ? '' : 'bg-white shadow-sm'
+      className={`relative z-50 transition-all duration-300 ${
+        isHome ? 'bg-transparent' : 'bg-white shadow-sm'
       }`}
     >
-      <div
-        className={`w-full transition-all duration-300 ${
-          isHome ? 'bg-transparent' : 'bg-white'
-        }`}
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <Link to="/" className="flex items-center">
-              <img
-                src={
-                  isHome
-                    ? '/lovable-uploads/DETELINA LOGO 2025 white-02.png'
-                    : '/lovable-uploads/DETELINA LOGO 2025 black-02.png'
-                }
-                alt="Detelina Logo"
-                className="h-20 w-auto transition-all duration-300"
-              />
-            </Link>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link to="/" className="flex items-center">
+            <img
+              src={
+                isHome
+                  ? '/lovable-uploads/DETELINA LOGO 2025 white-02.png'
+                  : '/lovable-uploads/DETELINA LOGO 2025 black-02.png'
+              }
+              alt="Detelina Logo"
+              className="h-20 w-auto transition-all duration-300"
+            />
+          </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              <NavLink to="/" active={isHome} isHome={isHome}>
-                Home
-              </NavLink>
-              <NavLink to="/about" active={location.pathname === '/about'} isHome={isHome}>
-                About Us
-              </NavLink>
-              <NavLink to="/products" active={location.pathname === '/products'} isHome={isHome}>
-                Products
-              </NavLink>
-              <NavLink to="/contact" active={location.pathname === '/contact'} isHome={isHome}>
-                Contact
-              </NavLink>
-            </nav>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-8">
+            <NavLink to="/" active={isHome} isHome={isHome}>
+              Home
+            </NavLink>
+            <NavLink to="/about" active={location.pathname === '/about'} isHome={isHome}>
+              About Us
+            </NavLink>
+            <NavLink to="/products" active={location.pathname === '/products'} isHome={isHome}>
+              Products
+            </NavLink>
+            <NavLink to="/contact" active={location.pathname === '/contact'} isHome={isHome}>
+              Contact
+            </NavLink>
+          </nav>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-2 rounded-full text-detelina-dark hover:bg-gray-100"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label={isMobileMenuOpen ? 'Close Menu' : 'Open Menu'}
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2 rounded-full text-detelina-dark hover:bg-gray-100"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? 'Close Menu' : 'Open Menu'}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
 
