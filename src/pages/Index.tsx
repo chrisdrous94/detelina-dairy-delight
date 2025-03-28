@@ -11,7 +11,7 @@ import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import { featuredProducts } from '../data/products';
-import Chatbot from '../components/Chatbot';
+
 
 const Index = () => {
   // Scroll to top on page load
@@ -134,7 +134,7 @@ const Index = () => {
       <Footer />
       
       {/* Chatbot */}
-      <Chatbot />
+      
     </div>
   );
 };

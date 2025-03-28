@@ -5,7 +5,6 @@ import Footer from '../components/Footer';
 import Newsletter from '../components/Newsletter';
 import Contact from '../components/Contact';
 import Timeline from '../components/Timeline';
-import Chatbot from '../components/Chatbot';
 import { motion } from 'framer-motion';
 
 const AboutPage = () => {
@@ -216,7 +215,7 @@ const AboutPage = () => {
       <Newsletter />
       <Contact />
       <Footer />
-      <Chatbot />
+      
     </div>
   );
 };

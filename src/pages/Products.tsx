@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 import { allProducts } from '../data/products';
-import Chatbot from '../components/Chatbot';
+
 
 const Products = () => {
   useEffect(() => {
@@ -108,7 +108,7 @@ const Products = () => {
       </section>
 
       <Footer />
-      <Chatbot />
+      
     </div>
   );
 };
