@@ -3,58 +3,39 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Close mobile menu when changing routes
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location]);
 
-  const shouldShowScrolledStyle = isScrolled || location.pathname !== '/';
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
-        shouldShowScrolledStyle ? 'bg-white/90 backdrop-blur-md shadow-sm' : 'bg-transparent'
-      }`}
-    >
+    <header className="relative z-50 bg-white shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img
-              src={
-                shouldShowScrolledStyle
-                  ? '/lovable-uploads/DETELINA LOGO 2025 black-02.png'
-                  : '/lovable-uploads/DETELINA LOGO 2025 white-02.png'
-              }
+              src="/lovable-uploads/DETELINA LOGO 2025 black-02.png"
               alt="Detelina Logo"
-              className="h-20 w-auto transition-all duration-300"
+              className="h-20 w-auto"
             />
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <NavLink to="/" active={location.pathname === '/'} isScrolled={shouldShowScrolledStyle}>
+            <NavLink to="/" active={location.pathname === '/'}>
               Home
             </NavLink>
-            <NavLink to="/about" active={location.pathname === '/about'} isScrolled={shouldShowScrolledStyle}>
+            <NavLink to="/about" active={location.pathname === '/about'}>
               About Us
             </NavLink>
-            <NavLink to="/products" active={location.pathname === '/products'} isScrolled={shouldShowScrolledStyle}>
+            <NavLink to="/products" active={location.pathname === '/products'}>
               Products
             </NavLink>
-            <NavLink to="/contact" active={location.pathname === '/contact'} isScrolled={shouldShowScrolledStyle}>
+            <NavLink to="/contact" active={location.pathname === '/contact'}>
               Contact
             </NavLink>
           </nav>
@@ -98,34 +79,21 @@ const Navbar = () => {
 const NavLink = ({
   to,
   active,
-  children,
-  isScrolled
+  children
 }: {
   to: string;
   active: boolean;
   children: React.ReactNode;
-  isScrolled: boolean;
-}) => {
-  const baseClasses = 'nav-link py-2 font-medium text-base transition-colors';
-  const activeScrolled = 'text-detelina-green';
-  const inactiveScrolled = 'text-gray-800 hover:text-detelina-green';
-  const activeTransparent = 'text-white after:scale-x-100';
-  const inactiveTransparent = 'text-white/80 hover:text-detelina-green';
-
-  const classes = isScrolled
-    ? active
-      ? activeScrolled
-      : inactiveScrolled
-    : active
-    ? activeTransparent
-    : inactiveTransparent;
-
-  return (
-    <Link to={to} className={`${baseClasses} ${classes}`}>
-      {children}
-    </Link>
-  );
-};
+}) => (
+  <Link
+    to={to}
+    className={`nav-link py-2 font-medium text-base transition-colors ${
+      active ? 'text-detelina-green' : 'text-gray-800 hover:text-detelina-green'
+    }`}
+  >
+    {children}
+  </Link>
+);
 
 const MobileNavLink = ({
   to,
