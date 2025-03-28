@@ -16,11 +16,18 @@ const TimelineEvent = ({ year, title, description, image }: TimelineEventProps) 
   return (
     <motion.div
       ref={ref}
-      className="flex flex-col lg:flex-row items-center gap-10 py-12 border-t border-gray-200"
+      className="relative flex flex-col lg:flex-row items-center gap-10 py-12 border-t border-gray-200"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, ease: 'easeOut' }}
     >
+      {/* Animated dot */}
+      <motion.div
+        className="absolute left-1 top-12 w-4 h-4 rounded-full bg-primary z-10 border-2 border-white shadow-lg"
+        animate={isInView ? { scale: [0.7, 1.2, 1] } : { scale: 0.7 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      />
+
       <div className="w-full lg:w-1/2 space-y-4 text-center lg:text-left">
         <div className="inline-block px-4 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">
           {year}
@@ -87,13 +94,35 @@ const Timeline = () => {
 
   const timelineRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: timelineRef });
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('data-index');
+            if (id !== null) setActiveIndex(Number(id));
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    const items = document.querySelectorAll('[data-index]');
+    items.forEach((item) => observer.observe(item));
+
+    return () => {
+      items.forEach((item) => observer.unobserve(item));
+    };
+  }, []);
 
   return (
     <section className="relative py-24 bg-white" id="our-history" ref={timelineRef}>
       {/* Scroll progress bar */}
       <motion.div
         className="fixed top-0 left-0 h-1 bg-primary z-50"
-        style={{ width: scrollYProgress ? `${scrollYProgress.get() * 100}%` : '0%' }}
+        style={{ scaleX: scrollYProgress, transformOrigin: 'left' }}
       />
 
       {/* Floating year nav */}
@@ -102,7 +131,11 @@ const Timeline = () => {
           <a
             key={index}
             href={`#event-${index}`}
-            className="text-xs px-3 py-1 bg-white border border-gray-300 rounded-full hover:bg-primary hover:text-white transition"
+            className={`text-xs px-3 py-1 rounded-full border transition ${
+              activeIndex === index
+                ? 'bg-primary text-white border-primary'
+                : 'bg-white border-gray-300 text-gray-700 hover:bg-primary hover:text-white'
+            }`}
           >
             {event.year}
           </a>
@@ -122,12 +155,14 @@ const Timeline = () => {
           </p>
         </div>
 
-        <div className="space-y-16">
-          {events.map((event, index) => (
-            <div key={index} id={`event-${index}`}>
-              <TimelineEvent {...event} />
-            </div>
-          ))}
+        <div className="relative before:absolute before:left-3 before:top-0 before:bottom-0 before:w-1 before:bg-primary/20 before:rounded-full">
+          <div className="space-y-16 pl-8">
+            {events.map((event, index) => (
+              <div key={index} id={`event-${index}`} data-index={index}>
+                <TimelineEvent {...event} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
