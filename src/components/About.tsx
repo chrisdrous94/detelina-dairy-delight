@@ -4,13 +4,13 @@ import { ArrowRight } from 'lucide-react';
 
 const About = () => {
   return (
-    <section className="py-20 bg-black text-white">
+    <section className="py-20 bg-gradient-to-b from-black via-gray-900 to-gray-800 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Image with dark gradient overlay */}
           <div className="relative">
             {/* Dark gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent z-10 rounded-2xl" />
+            <div className="absolute inset-0 bg-black/50 z-10 rounded-2xl" />
 
             {/* Main image */}
             <div className="rounded-2xl overflow-hidden shadow-xl relative z-0">
