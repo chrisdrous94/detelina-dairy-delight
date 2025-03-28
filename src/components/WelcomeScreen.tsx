@@ -43,24 +43,41 @@ const WelcomeScreen = ({ onFinish }: { onFinish: () => void }) => {
       {/* Milk drop animation */}
       <AnimatePresence>
   {dropCount < 2 && (
-    <motion.div
-      key={`drop-${dropCount}`}
-      className="absolute top-0 left-1/2 -translate-x-1/2"
-      initial={{ y: -50, opacity: 0 }}
-      animate={{ y: 180, opacity: 1 }}
-      exit={{ opacity: 0, scale: 0.5 }}
-      transition={{ duration: 1, ease: 'easeInOut' }}
-      style={{
-        width: '20px',
-        height: '28px',
-        backgroundColor: 'white',
-        boxShadow: '0 4px 10px rgba(255, 255, 255, 0.2)',
-        borderRadius: '50% 50% 60% 60% / 60% 60% 40% 40%',
-        zIndex: 5,
-      }}
-    />
+    <>
+      {/* Milk Drop */}
+      <motion.svg
+        key={`drop-${dropCount}`}
+        className="absolute top-0 left-1/2 -translate-x-1/2"
+        width="24"
+        height="36"
+        viewBox="0 0 24 36"
+        xmlns="http://www.w3.org/2000/svg"
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 180, opacity: 1 }}
+        exit={{ opacity: 0, scale: 0.5 }}
+        transition={{ duration: 1, ease: 'easeInOut' }}
+        style={{ zIndex: 5 }}
+      >
+        <path
+          d="M12 0C12 0 0 15 0 24C0 31.1797 5.37258 36 12 36C18.6274 36 24 31.1797 24 24C24 15 12 0 12 0Z"
+          fill="white"
+        />
+      </motion.svg>
+
+      {/* Ripple Effect */}
+      <motion.div
+        key={`ripple-${dropCount}`}
+        className="absolute left-1/2 -translate-x-1/2 rounded-full border border-white"
+        style={{ top: '180px', width: '12px', height: '12px' }}
+        initial={{ scale: 0.5, opacity: 0.5 }}
+        animate={{ scale: 3, opacity: 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+      />
+    </>
   )}
 </AnimatePresence>
+
 
 
 
