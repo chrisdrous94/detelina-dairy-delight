@@ -83,4 +83,41 @@ export default function ScrollableTimeline() {
                 <div className="inline-block px-4 py-1 bg-detelina-green/10 text-detelina-green text-xs font-medium rounded-full">
                   {event.year}
                 </div>
-                <h3 className="text-2xl
+                <h3 className="text-2xl font-playfair font-bold text-gray-800">
+                  {event.title}
+                </h3>
+                <p className="text-gray-600 text-base leading-relaxed">{event.description}</p>
+              </div>
+              {event.image && (
+                <div className="overflow-hidden rounded-xl">
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="w-full h-auto object-cover rounded-xl transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Floating Year Navigation (Optional) */}
+      <div className="fixed top-1/2 left-6 transform -translate-y-1/2 flex flex-col gap-2 z-40">
+        {events.map((event, index) => (
+          <button
+            key={event.year}
+            onClick={() => setActiveIndex(index)}
+            className={`text-xs px-3 py-1 rounded-full border transition ${
+              activeIndex === index
+                ? 'bg-detelina-green text-white border-detelina-green'
+                : 'bg-white text-gray-700 border-gray-300 hover:bg-detelina-green hover:text-white'
+            }`}
+          >
+            {event.year}
+          </button>
+        ))}
+      </div>
+    </section>
+  )
+}
