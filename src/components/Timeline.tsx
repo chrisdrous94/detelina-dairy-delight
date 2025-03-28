@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 
 interface TimelineEventProps {
   year: string;
@@ -16,7 +16,7 @@ const TimelineEvent = ({ year, title, description, image }: TimelineEventProps) 
   return (
     <motion.div
       ref={ref}
-      className="relative flex flex-col lg:flex-row items-center gap-10 py-16"
+      className="relative flex flex-col lg:flex-row items-center gap-10 py-20"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, ease: 'easeOut' }}
@@ -88,8 +88,8 @@ const Timeline = () => {
     }
   ];
 
-  const timelineRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: timelineRef });
+  // PAGE scroll instead of target
+  const { scrollYProgress } = useScroll();
 
   const path1 = "M100,0 Q100,200 100,400 Q100,600 100,800";
   const path2 = "M100,0 Q130,250 80,400 Q70,600 100,800";
@@ -98,15 +98,14 @@ const Timeline = () => {
   const morph = useTransform(scrollYProgress, [0, 0.5, 1], [path1, path2, path3]);
 
   return (
-    <section className="relative py-24 bg-white" id="our-history" ref={timelineRef}>
-      {/* Morphing animated SVG line */}
+    <section className="relative py-24 bg-white min-h-[300vh]" id="our-history">
+      {/* Morphing SVG line */}
       <svg className="absolute left-1/2 -translate-x-1/2 top-0 h-full w-64 z-0 pointer-events-none" viewBox="0 0 200 800" fill="none">
         <motion.path
-          stroke="#A4D65E" // Direct hex to match detelina.green
+          stroke="#A4D65E"
           strokeWidth="4"
           strokeLinecap="round"
-          d={path1}
-          style={{ d: morph }} // ✅ THIS FIXES THE MORPHING
+          style={{ d: morph }}
         />
       </svg>
 
