@@ -34,10 +34,10 @@ const Index = () => {
               Our Products
             </span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">
-              Eastern European Dairy Traditions
+            Made in Cyprus with Local Milk & Care
             </h2>
             <p className="text-gray-600">
-              Discover our range of authentic, naturally fermented dairy products made using traditional Eastern European recipes.
+            Small-batch, probiotic-rich dairy rooted in family tradition.
             </p>
           </div>
           
@@ -58,10 +58,8 @@ const Index = () => {
           </div>
         </div>
       </section>
-      
-      {/* About Section */}
-      <About />
-      
+
+  
       {/* Benefits Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
