@@ -45,15 +45,23 @@ const WelcomeScreen = ({ onFinish }: { onFinish: () => void }) => {
   {dropCount < 2 && (
     <motion.div
       key={`drop-${dropCount}`}
-      className="absolute top-0 left-1/2 transform -translate-x-1/2 drop-shape"
+      className="absolute top-0 left-1/2 -translate-x-1/2"
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 180, opacity: 1 }}
       exit={{ opacity: 0, scale: 0.5 }}
       transition={{ duration: 1, ease: 'easeInOut' }}
-      style={{ zIndex: 5 }}
+      style={{
+        width: '20px',
+        height: '28px',
+        backgroundColor: 'white',
+        boxShadow: '0 4px 10px rgba(255, 255, 255, 0.2)',
+        borderRadius: '50% 50% 60% 60% / 60% 60% 40% 40%',
+        zIndex: 5,
+      }}
     />
   )}
 </AnimatePresence>
+
 
 
       {/* Logo */}
