@@ -106,7 +106,7 @@ const Timeline = () => {
           strokeWidth="4"
           strokeLinecap="round"
           d={path1}
-          animate={{ d: morph }}
+          style={{ d: morph }} // ✅ THIS FIXES THE MORPHING
         />
       </svg>
 
