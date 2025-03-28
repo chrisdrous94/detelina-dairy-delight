@@ -108,7 +108,7 @@ const NavLink = ({
   <Link 
     to={to} 
     className={`nav-link py-2 font-medium text-base transition-colors ${
-      active ? 'text-white after:scale-x-100' : 'text-gray-700 hover:text-detelina-green'
+      active ? 'text-white after:scale-x-100' : 'text-white/80 hover:text-detelina-green'
     }`}
   >
     {children}
