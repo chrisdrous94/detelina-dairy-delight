@@ -77,7 +77,7 @@ const ContactPage = () => {
                 </ul>
                 <div>
                   <a 
-                    href="mailto:wholesale@detelina-dairy.com" 
+                    href="christoforosdrousiotis@gmail.com" 
                     className="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-full transition-all hover:bg-primary-dark"
                   >
                     Email Wholesale Department
