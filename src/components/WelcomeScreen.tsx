@@ -16,7 +16,6 @@ const WelcomeScreen = ({ onFinish }: { onFinish: () => void }) => {
     return () => clearTimeout(auto);
   }, []);
 
-  // Trigger milk drop twice
   useEffect(() => {
     if (dropCount < 2) {
       const dropTimeout = setTimeout(() => setDropCount((c) => c + 1), 1500);
@@ -40,66 +39,49 @@ const WelcomeScreen = ({ onFinish }: { onFinish: () => void }) => {
         <button className="hover:text-white">RU</button>
       </div>
 
-      {/* Milk drop animation */}
+      {/* Milk drop and ripple animation */}
       <AnimatePresence>
-  {dropCount < 2 && (
-    <>
-      {/* Milk Drop */}
-      <AnimatePresence>
-  {dropCount < 2 && (
-    <>
-      {/* Milk drop */}
-      <motion.svg
-        key={`drop-${dropCount}`}
-        className="absolute top-0 left-1/2 -translate-x-1/2"
-        width="24"
-        height="36"
-        viewBox="0 0 24 36"
-        xmlns="http://www.w3.org/2000/svg"
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 180, opacity: 1 }}
-        exit={{ opacity: 0, scale: 0.5 }}
-        transition={{ duration: 1, ease: 'easeInOut' }}
-        style={{ zIndex: 5 }}
-      >
-        <path
-          d="M12 0C12 0 0 15 0 24C0 31.1797 5.37258 36 12 36C18.6274 36 24 31.1797 24 24C24 15 12 0 12 0Z"
-          fill="white"
-        />
-      </motion.svg>
+        {dropCount < 2 && (
+          <>
+            {/* Milk drop */}
+            <motion.svg
+              key={`drop-${dropCount}`}
+              className="absolute top-0 left-1/2 -translate-x-1/2"
+              width="24"
+              height="36"
+              viewBox="0 0 24 36"
+              xmlns="http://www.w3.org/2000/svg"
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 180, opacity: 1 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+              transition={{ duration: 1, ease: 'easeInOut' }}
+              style={{ zIndex: 5 }}
+            >
+              <path
+                d="M12 0C12 0 0 15 0 24C0 31.1797 5.37258 36 12 36C18.6274 36 24 31.1797 24 24C24 15 12 0 12 0Z"
+                fill="white"
+              />
+            </motion.svg>
 
-      {/* Elegant ripple splash */}
-      <motion.div
-        key={`ripple-${dropCount}`}
-        className="absolute top-[185px] left-1/2 -translate-x-1/2 rounded-full pointer-events-none"
-        initial={{
-          scale: 0.2,
-          opacity: 0.4,
-          filter: 'blur(0px)',
-        }}
-        animate={{
-          scale: 3,
-          opacity: 0,
-          filter: 'blur(4px)',
-        }}
-        transition={{
-          duration: 1,
-          ease: 'easeOut',
-          delay: 1,
-        }}
-        style={{
-          width: '50px',
-          height: '50px',
-          backgroundColor: 'rgba(255, 255, 255, 0.15)',
-          zIndex: 3,
-        }}
-      />
-    </>
-  )}
-</AnimatePresence>
+            {/* Ripple effect */}
+            <motion.div
+              key={`ripple-${dropCount}`}
+              className="absolute top-[185px] left-1/2 -translate-x-1/2 rounded-full pointer-events-none"
+              initial={{ scale: 0.2, opacity: 0.4, filter: 'blur(0px)' }}
+              animate={{ scale: 3, opacity: 0, filter: 'blur(4px)' }}
+              transition={{ duration: 1, ease: 'easeOut', delay: 1 }}
+              style={{
+                width: '50px',
+                height: '50px',
+                backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                zIndex: 3,
+              }}
+            />
+          </>
+        )}
+      </AnimatePresence>
 
-
-     {/* Logo */}
+      {/* Logo */}
       <motion.img
         src="/lovable-uploads/DETELINA LOGO 2025 white-02.png"
         alt="Detelina Logo"
