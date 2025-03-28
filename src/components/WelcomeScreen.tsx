@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 
-
 const WelcomeScreen = ({ onFinish }: { onFinish: () => void }) => {
   const [fadingOut, setFadingOut] = useState(false);
 
@@ -31,7 +30,12 @@ const WelcomeScreen = ({ onFinish }: { onFinish: () => void }) => {
         <button className="hover:text-white">RU</button>
       </div>
 
-      
+      {/* Logo */}
+      <img
+        src="/lovable-uploads/DETELINA LOGO 2025 white-02.png"
+        alt="Detelina Logo"
+        className="w-[580px] lg:w-[700px] mb-6"
+      />
 
       {/* Tagline */}
       <p className="text-white text-xl md:text-2xl font-light mb-10">
