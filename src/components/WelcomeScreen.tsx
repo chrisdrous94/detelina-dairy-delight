@@ -39,7 +39,7 @@ const WelcomeScreen = ({ onFinish }: { onFinish: () => void }) => {
         <button className="hover:text-white">RU</button>
       </div>
 
-      {/* Milk drop and ripple animation */}
+      {/* Milk drop and animated splash */}
       <AnimatePresence>
         {dropCount < 2 && (
           <>
@@ -63,20 +63,27 @@ const WelcomeScreen = ({ onFinish }: { onFinish: () => void }) => {
               />
             </motion.svg>
 
-            {/* Ripple effect */}
-            <motion.div
-              key={`ripple-${dropCount}`}
-              className="absolute top-[185px] left-1/2 -translate-x-1/2 rounded-full pointer-events-none"
-              initial={{ scale: 0.2, opacity: 0.4, filter: 'blur(0px)' }}
-              animate={{ scale: 3, opacity: 0, filter: 'blur(4px)' }}
-              transition={{ duration: 1, ease: 'easeOut', delay: 1 }}
-              style={{
-                width: '50px',
-                height: '50px',
-                backgroundColor: 'rgba(255, 255, 255, 0.15)',
-                zIndex: 3,
-              }}
-            />
+            {/* Animated splash effect */}
+            <motion.svg
+              key={`splash-${dropCount}`}
+              className="absolute top-[170px] left-1/2 -translate-x-1/2"
+              width="120"
+              height="80"
+              viewBox="0 0 120 80"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              initial={{ scale: 0.6, opacity: 0 }}
+              animate={{ scale: 1.2, opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8, ease: 'easeOut', delay: 1 }}
+              style={{ zIndex: 2 }}
+            >
+              <path
+                d="M60 80C40 80 20 70 10 40C20 50 25 20 35 30C40 40 50 10 60 25C70 10 80 40 85 30C95 20 100 50 110 40C100 70 80 80 60 80Z"
+                fill="white"
+                opacity="0.4"
+              />
+            </motion.svg>
           </>
         )}
       </AnimatePresence>
