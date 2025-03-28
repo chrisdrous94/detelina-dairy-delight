@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
-import './milkdrop.css';
+import './milkDrop.css';
 
 const WelcomeScreen = ({ onFinish }: { onFinish: () => void }) => {
   const [fadingOut, setFadingOut] = useState(false);
@@ -31,14 +31,9 @@ const WelcomeScreen = ({ onFinish }: { onFinish: () => void }) => {
         <button className="hover:text-white">RU</button>
       </div>
 
-      {/* Realistic milk drop animation */}
-      <div className="milk-drop-wrapper">
-        <svg className="milk-drop-svg" viewBox="0 0 200 200">
-          <circle className="drop" cx="100" cy="30" r="10" />
-          <circle className="splash splash1" cx="60" cy="160" r="5" />
-          <circle className="splash splash2" cx="100" cy="160" r="8" />
-          <circle className="splash splash3" cx="140" cy="160" r="5" />
-        </svg>
+      {/* Realistic milk drop animation from CodePen */}
+      <div className="drip-wrap">
+        <div className="drip" />
       </div>
 
       {/* Logo */}
