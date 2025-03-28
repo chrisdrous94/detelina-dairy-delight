@@ -63,25 +63,25 @@ const WelcomeScreen = ({ onFinish }: { onFinish: () => void }) => {
               />
             </motion.svg>
 
-            {/* Animated splash effect */}
+            {/* Animated splash effect using curves */}
             <motion.svg
               key={`splash-${dropCount}`}
-              className="absolute top-[170px] left-1/2 -translate-x-1/2"
-              width="120"
-              height="80"
-              viewBox="0 0 120 80"
+              className="absolute top-[185px] left-1/2 -translate-x-1/2"
+              width="180"
+              height="90"
+              viewBox="0 0 180 90"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              initial={{ scale: 0.6, opacity: 0 }}
-              animate={{ scale: 1.2, opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut', delay: 1 }}
-              style={{ zIndex: 2 }}
+              initial={{ scale: 0.3, opacity: 0 }}
+              animate={{ scale: 1, opacity: 0.9 }}
+              exit={{ scale: 1.2, opacity: 0 }}
+              transition={{ duration: 1.2, ease: 'easeOut', delay: 1 }}
+              style={{ zIndex: 4 }}
             >
               <path
-                d="M60 80C40 80 20 70 10 40C20 50 25 20 35 30C40 40 50 10 60 25C70 10 80 40 85 30C95 20 100 50 110 40C100 70 80 80 60 80Z"
+                d="M90 90C60 90 20 75 10 45C20 60 40 15 50 30C60 45 70 0 90 20C110 0 120 45 130 30C140 15 160 60 170 45C160 75 120 90 90 90Z"
                 fill="white"
-                opacity="0.4"
+                fillOpacity="0.4"
               />
             </motion.svg>
           </>
