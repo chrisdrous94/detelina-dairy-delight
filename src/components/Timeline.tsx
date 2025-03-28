@@ -77,18 +77,19 @@ const Timeline = () => {
       year: '2015',
       title: 'A Fresh New Look',
       description: 'Our packaging got a modern refresh — a new design that honored tradition and highlighted our quality.',
-      image: '/lovable-uploads/kefir-full-light-and-strawberry-together.jpg'
+      image: '/lovable-uploads/product-line-first.jpg'
     },
     {
       year: '2024',
       title: 'Tvorog, Now in 250g',
-      description: 'Our signature cottage cheese is now available in a smaller, more convenient size for every household.'
+      description: 'Our signature cottage cheese is now available in a smaller, more convenient size for every household.',
+    image: '/lovable-uploads/tvorog-250g.png'
     },
     {
       year: '2025',
       title: 'Launch of Pro² Protein Line',
       description: 'We introduced our protein-enriched kefir line, blending high performance with natural fermentation.',
-      image: '/lovable-uploads/protein-kefir-pro2.png'
+      image: '/lovable-uploads/pro²-protein-kefir-black-font.jpg'
     }
   ];
 
