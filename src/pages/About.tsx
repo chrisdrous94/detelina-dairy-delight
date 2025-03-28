@@ -91,9 +91,7 @@ const AboutPage = () => {
             <h2 className="text-3xl font-bold mb-6 font-playfair">
               Quality & Tradition in Every Product
             </h2>
-            <p className="text-lg text-gray-700">
-              We are dedicated to preserving Eastern European dairy traditions while providing Cyprus with nutritious, delicious products that contribute to a healthy lifestyle.
-            </p>
+            
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
@@ -110,9 +108,7 @@ const AboutPage = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-3 font-playfair">Quality First</h3>
-              <p className="text-gray-600">
-                We use only the finest ingredients and maintain strict quality control throughout our production process to ensure every product meets our high standards.
-              </p>
+             
             </motion.div>
             
             <motion.div 
@@ -128,9 +124,7 @@ const AboutPage = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-3 font-playfair">Authentic Recipes</h3>
-              <p className="text-gray-600">
-                Our products follow traditional Eastern European recipes, using natural fermentation methods that have been perfected over generations.
-              </p>
+              
             </motion.div>
             
             <motion.div 
@@ -146,71 +140,13 @@ const AboutPage = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-3 font-playfair">Health Focused</h3>
-              <p className="text-gray-600">
-                We believe in the natural health benefits of fermented dairy and are committed to providing products that contribute to our customers' wellbeing.
-              </p>
+              
             </motion.div>
           </div>
         </div>
       </section>
       
-      {/* Team Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <span className="inline-block px-3 py-1 mb-4 bg-primary/10 text-primary text-sm font-medium rounded-full">
-              Our Team
-            </span>
-            <h2 className="text-3xl font-bold mb-6 font-playfair">
-              The People Behind Detelina
-            </h2>
-            <p className="text-lg text-gray-700">
-              Our dedicated team combines Eastern European dairy expertise with Cypriot hospitality to bring you the best of both worlds.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all">
-              <div className="aspect-w-1 aspect-h-1">
-                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="CEO" className="w-full h-full object-cover" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-1 font-playfair">Nikolai Petrov</h3>
-                <p className="text-primary font-medium mb-4">Founder & CEO</p>
-                <p className="text-gray-600">
-                  With over 30 years of experience in dairy production, Nikolai brought his passion for Eastern European dairy traditions to Cyprus.
-                </p>
-              </div>
-            </div>
-            
-            <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all">
-              <div className="aspect-w-1 aspect-h-1">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Chief Production Officer" className="w-full h-full object-cover" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-1 font-playfair">Elena Dimitrova</h3>
-                <p className="text-primary font-medium mb-4">Chief Production Officer</p>
-                <p className="text-gray-600">
-                  Elena oversees our production processes, ensuring that every batch meets our high standards for quality and authenticity.
-                </p>
-              </div>
-            </div>
-            
-            <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all">
-              <div className="aspect-w-1 aspect-h-1">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Head of Research" className="w-full h-full object-cover" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-1 font-playfair">Andreas Georgiou</h3>
-                <p className="text-primary font-medium mb-4">Head of Research & Development</p>
-                <p className="text-gray-600">
-                  Andreas leads our innovation efforts, developing new products that blend traditional methods with modern nutritional science.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+     
       
       <Newsletter />
       <Contact />

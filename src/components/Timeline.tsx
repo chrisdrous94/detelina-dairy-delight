@@ -77,7 +77,7 @@ const Timeline = () => {
       year: '2015',
       title: 'A Fresh New Look',
       description: 'Our packaging got a modern refresh — a new design that honored tradition and highlighted our quality.',
-      image: '/lovable-uploads/product-line-first.jpg'
+      image: '/lovable-uploads/old-detelina-products.png'
     },
     {
       year: '2024',
