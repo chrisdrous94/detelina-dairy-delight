@@ -40,7 +40,7 @@ export const allProducts: ProductProps[] = [
     category: 'Fermented Drink',
     nutritionFacts: {
       servingSize: "1000ml",
-      calories: 120,
+      calories: 57,
       totalFat: "3g",
       saturatedFat: "1.4g",
       sodium: "0.05g",
