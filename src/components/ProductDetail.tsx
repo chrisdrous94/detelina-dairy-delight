@@ -183,9 +183,35 @@ const ProductDetail = () => {
             )}
           </div>
 
-          {/* Suggested Uses */}
           {/* Related Products */}
-          {/* (These sections remain unchanged from your original code) */}
+          {relatedProducts.length > 0 && (
+            <div>
+              <h2 className="text-2xl font-bold mb-6 font-playfair">Related Products</h2>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {relatedProducts.map(product => (
+                  <div key={product.id} className="h-full">
+                    <Link to={`/products/${product.id}`} className="block h-full">
+                      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden h-full hover:shadow-md transition-shadow">
+                        <div>
+                          <img 
+                            src={product.image} 
+                            alt={product.name} 
+                            className="w-full rounded-t-xl"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                        <div className="p-4">
+                          <h3 className="font-bold">{product.name}</h3>
+                          <p className="text-sm text-gray-600 line-clamp-2">{product.description}</p>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </main>
 
