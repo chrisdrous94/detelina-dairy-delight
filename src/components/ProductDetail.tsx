@@ -142,66 +142,65 @@ const ProductDetail = () => {
             </div>
           </div>
           
-          {/* Nutrition Facts */}
-          {product.nutritionFacts && (
-            <div className="mb-16">
-              <h2 className="text-2xl font-bold mb-6 font-playfair">Nutrition Facts</h2>
-              <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 max-w-md">
-                <div className="border-b-2 border-black pb-2 mb-2">
-                  <h3 className="text-xl font-bold">Nutrition Facts</h3>
-                </div>
-                <div className="border-b border-gray-300 pb-1 mb-1">
-                  <p><span className="font-medium">Serving Size</span> {product.nutritionFacts.servingSize}</p>
-                </div>
-                <div className="border-b-8 border-black pb-1 mb-2">
-                  <p className="text-lg font-bold">Nutricional Value Per 100ml</p>
-                  <div className="flex justify-between">
-                    <p className="text-xl font-bold">Calories</p>
-                    <p className="text-xl font-bold">{product.nutritionFacts.calories}</p>
-                  </div>
-                </div>
-                <div className="border-b border-gray-300 pb-1 mb-1">
-                  <div className="flex justify-between">
-                    <p className="font-bold">Total Fat</p>
-                    <p>{product.nutritionFacts.totalFat}</p>
-                  </div>
-                </div>
-                <div className="border-b border-gray-300 pb-1 mb-1 pl-4">
-                  <div className="flex justify-between">
-                    <p>Saturated Fat</p>
-                    <p>{product.nutritionFacts.saturatedFat}</p>
-                  </div>
-                </div>
-              
-                </div>
-                <div className="border-b border-gray-300 pb-1 mb-1">
-                  <div className="flex justify-between">
-                    <p className="font-bold">Sodium</p>
-                    <p>{product.nutritionFacts.sodium}</p>
-                  </div>
-                </div>
-                <div className="border-b border-gray-300 pb-1 mb-1">
-                  <div className="flex justify-between">
-                    <p className="font-bold">Total Carbohydrates</p>
-                    <p>{product.nutritionFacts.totalCarbs}</p>
-                  </div>
-                
-                </div>
-                <div className="border-b border-gray-300 pb-1 mb-1 pl-4">
-                  <div className="flex justify-between">
-                    <p>Sugars</p>
-                    <p>{product.nutritionFacts.sugars}</p>
-                  </div>
-                </div>
-                <div className="border-b-8 border-black pb-1 mb-2">
-                  <div className="flex justify-between">
-                    <p className="font-bold">Protein</p>
-                    <p>{product.nutritionFacts.protein}</p>
-                  </div>
-                  
-              </div>
-            </div>
-          )}
+         {/* Nutrition Facts */}
+{product.nutritionFacts && (
+  <div className="mb-16">
+    <h2 className="text-2xl font-bold mb-6 font-playfair">Nutrition Facts</h2>
+    <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 max-w-md">
+      <div className="border-b-2 border-black pb-2 mb-2">
+        <h3 className="text-xl font-bold">Nutrition Facts</h3>
+      </div>
+      <div className="border-b border-gray-300 pb-1 mb-1">
+        <p><span className="font-medium">Serving Size:</span> {product.nutritionFacts.servingSize}</p>
+      </div>
+      <div className="border-b-8 border-black pb-1 mb-2">
+        <p className="text-lg font-bold">Nutritional Value Per 100ml</p>
+        <div className="flex justify-between">
+          <p className="text-xl font-bold">Calories</p>
+          <p className="text-xl font-bold">{product.nutritionFacts.calories}</p>
+        </div>
+      </div>
+      <div className="border-b border-gray-300 pb-1 mb-1">
+        <div className="flex justify-between">
+          <p className="font-bold">Total Fat</p>
+          <p>{product.nutritionFacts.totalFat}</p>
+        </div>
+      </div>
+      <div className="border-b border-gray-300 pb-1 mb-1 pl-4">
+        <div className="flex justify-between">
+          <p>Saturated Fat</p>
+          <p>{product.nutritionFacts.saturatedFat}</p>
+        </div>
+      </div>
+
+      <div className="border-b border-gray-300 pb-1 mb-1">
+        <div className="flex justify-between">
+          <p className="font-bold">Sodium</p>
+          <p>{product.nutritionFacts.sodium}</p>
+        </div>
+      </div>
+      <div className="border-b border-gray-300 pb-1 mb-1">
+        <div className="flex justify-between">
+          <p className="font-bold">Total Carbohydrates</p>
+          <p>{product.nutritionFacts.totalCarbs}</p>
+        </div>
+      </div>
+      <div className="border-b border-gray-300 pb-1 mb-1 pl-4">
+        <div className="flex justify-between">
+          <p>Sugars</p>
+          <p>{product.nutritionFacts.sugars}</p>
+        </div>
+      </div>
+      <div className="border-b-8 border-black pb-1 mb-2">
+        <div className="flex justify-between">
+          <p className="font-bold">Protein</p>
+          <p>{product.nutritionFacts.protein}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
           
           {/* Suggested uses section */}
           <div className="mb-16">
