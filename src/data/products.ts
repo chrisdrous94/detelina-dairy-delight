@@ -18,15 +18,11 @@ export const allProducts: ProductProps[] = [
       servingSize: "500ml",
       calories: 120,
       totalFat: "3g",
-      saturatedFat: "2g",
-      cholesterol: "15mg",
-      sodium: "125mg",
-      totalCarbs: "12g",
-      dietaryFiber: "0g",
-      sugars: "12g",
-      protein: "8g",
-      calcium: "30%",
-      vitaminD: "25%"
+      saturatedFat: "1.4g",
+      sodium: "0.05g",
+      totalCarbs: "4.2g",
+      sugars: "4.2g",
+      protein: "3.2g",
     }
   },
   {
@@ -35,7 +31,7 @@ export const allProducts: ProductProps[] = [
     russianName: 'Кефир Семейный',
     description: 'A bulk 2L family-size bottle of our original kefir — perfect for households that enjoy probiotic-rich drinks daily.',
     benefits: [
-      '2L size ideal for families',
+      '1L size ideal for families',
       'Same probiotic-rich formula',
       'Cost-effective option',
       'Perfect for shared meals'
@@ -43,18 +39,14 @@ export const allProducts: ProductProps[] = [
     image: '/lovable-uploads/kefir-full-fat.jpg', // replace with correct image when ready
     category: 'Fermented Drink',
     nutritionFacts: {
-      servingSize: "500ml",
+      servingSize: "1000ml",
       calories: 120,
       totalFat: "3g",
-      saturatedFat: "2g",
-      cholesterol: "15mg",
-      sodium: "125mg",
-      totalCarbs: "12g",
-      dietaryFiber: "0g",
-      sugars: "12g",
-      protein: "8g",
-      calcium: "30%",
-      vitaminD: "25%"
+      saturatedFat: "1.4g",
+      sodium: "0.05g",
+      totalCarbs: "4.2g",
+      sugars: "4.2g",
+      protein: "3.2g",
     }
   },
   {
@@ -71,18 +63,14 @@ export const allProducts: ProductProps[] = [
     image: '/lovable-uploads/kefir-light.jpg',
     category: 'Fermented Drink',
     nutritionFacts: {
-      servingSize: "240ml",
-      calories: 90,
-      totalFat: "1.5g",
-      saturatedFat: "1g",
-      cholesterol: "10mg",
-      sodium: "125mg",
-      totalCarbs: "12g",
-      dietaryFiber: "0g",
-      sugars: "12g",
-      protein: "8g",
-      calcium: "30%",
-      vitaminD: "25%"
+      servingSize: "500ml",
+      calories: 35,
+      totalFat: "0.5g",
+      saturatedFat: "0.25g",
+      sodium: "0.05g",
+      totalCarbs: "4.2g",
+      sugars: "4.2g",
+      protein: "3.2g",
     }
   },
   {
@@ -99,18 +87,14 @@ export const allProducts: ProductProps[] = [
     image: '/lovable-uploads/strawberry.jpg',
     category: 'Fruit Drink',
     nutritionFacts: {
-      servingSize: "240ml",
-      calories: 140,
-      totalFat: "3g",
-      saturatedFat: "2g",
-      cholesterol: "15mg",
-      sodium: "125mg",
-      totalCarbs: "23g",
-      dietaryFiber: "0g",
-      sugars: "22g",
-      protein: "8g",
-      calcium: "30%",
-      vitaminD: "25%"
+      servingSize: "500ml",
+      calories: 68,
+      totalFat: "1.3g",
+      saturatedFat: "0.65g",
+      sodium: "0.03mg",
+      totalCarbs: "11.3g",
+      sugars: "11.3g",
+      protein: "2.7g",
     }
   },
   {
@@ -127,18 +111,14 @@ export const allProducts: ProductProps[] = [
     image: '/lovable-uploads/riazhenka.jpg',
     category: 'Baked Milk',
     nutritionFacts: {
-      servingSize: "240ml",
-      calories: 150,
-      totalFat: "5g",
-      saturatedFat: "3g",
-      cholesterol: "15mg",
-      sodium: "120mg",
-      totalCarbs: "15g",
-      dietaryFiber: "0g",
-      sugars: "15g",
-      protein: "9g",
-      calcium: "30%",
-      vitaminD: "25%"
+      servingSize: "500ml",
+      calories: 57,
+      totalFat: "3g",
+      saturatedFat: "1.4g",
+      sodium: "0.05g",
+      totalCarbs: "4.2g",
+      sugars: "4.2g",
+      protein: "3.2g",
     }
   },
   {
@@ -155,18 +135,14 @@ export const allProducts: ProductProps[] = [
     image: '/lovable-uploads/tvorog-450g.png',
     category: 'Fresh Cheese',
     nutritionFacts: {
-      servingSize: "100g",
-      calories: 160,
+      servingSize: "450g",
+      calories: 155,
       totalFat: "9g",
-      saturatedFat: "5.5g",
-      cholesterol: "30mg",
-      sodium: "40mg",
-      totalCarbs: "3g",
-      dietaryFiber: "0g",
-      sugars: "3g",
-      protein: "18g",
-      calcium: "15%",
-      vitaminD: "6%"
+      saturatedFat: "7g",
+      sodium: "0mg",
+      totalCarbs: "5g",
+      sugars: "4g",
+      protein: "15g",
     }
   },
   {
@@ -183,18 +159,14 @@ export const allProducts: ProductProps[] = [
     image: '/lovable-uploads/tvorog-250g.png',
     category: 'Fresh Cheese',
     nutritionFacts: {
-      servingSize: "100g",
-      calories: 120,
-      totalFat: "5g",
-      saturatedFat: "3g",
-      cholesterol: "20mg",
-      sodium: "40mg",
-      totalCarbs: "3g",
-      dietaryFiber: "0g",
-      sugars: "3g",
-      protein: "18g",
-      calcium: "15%",
-      vitaminD: "6%"
+      servingSize: "250g",
+      calories: 155,
+      totalFat: "9g",
+      saturatedFat: "7g",
+      sodium: "0mg",
+      totalCarbs: "5g",
+      sugars: "4g",
+      protein: "15g",
     }
   },
   {
@@ -211,18 +183,14 @@ export const allProducts: ProductProps[] = [
     image: '/lovable-uploads/smetana.png',
     category: 'Sour Cream',
     nutritionFacts: {
-      servingSize: "30g",
-      calories: 60,
-      totalFat: "6g",
-      saturatedFat: "4g",
-      cholesterol: "20mg",
-      sodium: "10mg",
-      totalCarbs: "1g",
-      dietaryFiber: "0g",
-      sugars: "1g",
-      protein: "1g",
-      calcium: "4%",
-      vitaminD: "2%"
+      servingSize: "250g",
+      calories: 155,
+      totalFat: "9g",
+      saturatedFat: "7g",
+      sodium: "0mg",
+      totalCarbs: "5g",
+      sugars: "4g",
+      protein: "15g",
     }
   }
 ];

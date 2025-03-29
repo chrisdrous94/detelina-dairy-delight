@@ -16,14 +16,10 @@ export interface ProductProps {
     calories: number;
     totalFat: string;
     saturatedFat: string;
-    cholesterol: string;
     sodium: string;
     totalCarbs: string;
-    dietaryFiber: string;
     sugars: string;
-    protein: string;
-    calcium: string;
-    vitaminD: string;
+    protein: string
   };
 }
 

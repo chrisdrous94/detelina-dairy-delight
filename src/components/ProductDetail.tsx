@@ -154,7 +154,7 @@ const ProductDetail = () => {
                   <p><span className="font-medium">Serving Size</span> {product.nutritionFacts.servingSize}</p>
                 </div>
                 <div className="border-b-8 border-black pb-1 mb-2">
-                  <p className="text-lg font-bold">Amount Per Serving</p>
+                  <p className="text-lg font-bold">Nutricional Value Per 100ml</p>
                   <div className="flex justify-between">
                     <p className="text-xl font-bold">Calories</p>
                     <p className="text-xl font-bold">{product.nutritionFacts.calories}</p>
@@ -172,11 +172,7 @@ const ProductDetail = () => {
                     <p>{product.nutritionFacts.saturatedFat}</p>
                   </div>
                 </div>
-                <div className="border-b border-gray-300 pb-1 mb-1">
-                  <div className="flex justify-between">
-                    <p className="font-bold">Cholesterol</p>
-                    <p>{product.nutritionFacts.cholesterol}</p>
-                  </div>
+              
                 </div>
                 <div className="border-b border-gray-300 pb-1 mb-1">
                   <div className="flex justify-between">
@@ -189,12 +185,7 @@ const ProductDetail = () => {
                     <p className="font-bold">Total Carbohydrates</p>
                     <p>{product.nutritionFacts.totalCarbs}</p>
                   </div>
-                </div>
-                <div className="border-b border-gray-300 pb-1 mb-1 pl-4">
-                  <div className="flex justify-between">
-                    <p>Dietary Fiber</p>
-                    <p>{product.nutritionFacts.dietaryFiber}</p>
-                  </div>
+                
                 </div>
                 <div className="border-b border-gray-300 pb-1 mb-1 pl-4">
                   <div className="flex justify-between">
@@ -207,19 +198,7 @@ const ProductDetail = () => {
                     <p className="font-bold">Protein</p>
                     <p>{product.nutritionFacts.protein}</p>
                   </div>
-                </div>
-                <div className="border-b border-gray-300 pb-1 mb-1">
-                  <div className="flex justify-between">
-                    <p>Calcium</p>
-                    <p>{product.nutritionFacts.calcium}</p>
-                  </div>
-                </div>
-                <div className="pb-1 mb-1">
-                  <div className="flex justify-between">
-                    <p>Vitamin D</p>
-                    <p>{product.nutritionFacts.vitaminD}</p>
-                  </div>
-                </div>
+                  
               </div>
             </div>
           )}
