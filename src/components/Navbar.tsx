@@ -27,7 +27,7 @@ const Navbar = () => {
               src={
                 isHome
                   ? '/lovable-uploads/DETELINA LOGO 2025 white-02.png'
-                  : '/lovable-uploads/DETELINA LOGO 2025 black-02.png'
+                  : '/lovable-uploads/DETELINA LOGO 2025 white-02.png'
               }
               alt="Detelina Logo"
               className="h-20 w-auto transition-all duration-300"
