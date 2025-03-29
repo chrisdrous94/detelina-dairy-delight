@@ -93,7 +93,7 @@ const ProductCard = ({ product }: { product: ProductProps }) => {
 
         {/* Nutrition Facts Section */}
         {product.nutritionFacts && (
-          <div className="mt-6 p-4 border-t border-gray-300 bg-gray-50">
+          <div className="mt-6 p-4 border-2 border-gray-300 rounded-xl bg-white shadow-lg">
             <h4 className="text-lg font-bold mb-4">Nutrition Facts</h4>
             <table className="w-full text-sm text-left text-gray-700">
               <tbody>
