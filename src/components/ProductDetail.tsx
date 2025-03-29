@@ -65,7 +65,7 @@ const ProductDetail = () => {
           {/* Layout: Image + Details + Nutrition Facts */}
           <div className="grid md:grid-cols-3 gap-12 mb-16">
             {/* Image */}
-            <div className="relative bg-gray-100 rounded-xl overflow-hidden col-span-1">
+            <div className="relative rounded-xl overflow-hidden col-span-1">
               {!isImageLoaded && (
                 <div className="absolute inset-0 bg-gray-100 shimmer rounded-xl" />
               )}
