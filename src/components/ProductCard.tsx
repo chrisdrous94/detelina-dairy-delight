@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
@@ -19,7 +18,7 @@ export interface ProductProps {
     sodium: string;
     totalCarbs: string;
     sugars: string;
-    protein: string
+    protein: string;
   };
 }
 
@@ -33,7 +32,7 @@ const ProductCard = ({ product }: { product: ProductProps }) => {
         {!isLoaded && (
           <div className="absolute inset-0 bg-gray-100 shimmer" />
         )}
-        
+
         {/* Product image with loading optimization */}
         <img
           src={product.image}
@@ -45,7 +44,7 @@ const ProductCard = ({ product }: { product: ProductProps }) => {
           decoding="async"
           onLoad={() => setIsLoaded(true)}
         />
-        
+
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -79,6 +78,8 @@ const ProductCard = ({ product }: { product: ProductProps }) => {
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">
           {product.description}
         </p>
+
+        {/* Display Benefits */}
         <div className="space-y-2">
           {product.benefits.slice(0, 2).map((benefit, index) => (
             <div key={index} className="flex items-start">
@@ -89,6 +90,49 @@ const ProductCard = ({ product }: { product: ProductProps }) => {
             </div>
           ))}
         </div>
+
+        {/* Nutrition Facts Section */}
+        {product.nutritionFacts && (
+          <div className="mt-6 p-4 border-t border-gray-300 bg-gray-50">
+            <h4 className="text-lg font-bold mb-4">Nutrition Facts</h4>
+            <table className="w-full text-sm text-left text-gray-700">
+              <tbody>
+                <tr>
+                  <td className="font-medium">Serving Size</td>
+                  <td>{product.nutritionFacts.servingSize}</td>
+                </tr>
+                <tr>
+                  <td className="font-medium">Calories</td>
+                  <td>{product.nutritionFacts.calories}</td>
+                </tr>
+                <tr>
+                  <td className="font-medium">Total Fat</td>
+                  <td>{product.nutritionFacts.totalFat}</td>
+                </tr>
+                <tr>
+                  <td className="font-medium">Saturated Fat</td>
+                  <td>{product.nutritionFacts.saturatedFat}</td>
+                </tr>
+                <tr>
+                  <td className="font-medium">Sodium</td>
+                  <td>{product.nutritionFacts.sodium}</td>
+                </tr>
+                <tr>
+                  <td className="font-medium">Total Carbs</td>
+                  <td>{product.nutritionFacts.totalCarbs}</td>
+                </tr>
+                <tr>
+                  <td className="font-medium">Sugars</td>
+                  <td>{product.nutritionFacts.sugars}</td>
+                </tr>
+                <tr>
+                  <td className="font-medium">Protein</td>
+                  <td>{product.nutritionFacts.protein}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );
